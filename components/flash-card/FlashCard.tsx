@@ -1,7 +1,7 @@
 interface Props{
     hanzi : string;
     pinyin : string;
-    meaning : string;
+    meaning : string[];
     hsk_level : number;
 }
 

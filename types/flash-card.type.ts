@@ -6,9 +6,10 @@ export interface flashCard{
     id : string;
     hanzi : string;
     pinyin : string;
-    meaning : string;
+    meaning : string[];
     options : string[];
     hsk_level : number;
+    expected_answer : string;
 }
 
 export interface hanzi{

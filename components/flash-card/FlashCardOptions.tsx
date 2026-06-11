@@ -19,8 +19,12 @@ const FlashCardOptions =({
 
     const getColor = (option : string)=>{
         if(!selectedAnswer) return "bg-gray-300";
-        if(option === correctOption) return "bg-green-300 text-white";
-        if(option !== correctOption) return "bg-red-300 text-white";
+
+        const isSelected = option === selectedAnswer;
+        const isCorrect = option === correctOption;
+
+        if(isCorrect && isSelected) return "bg-green-300 text-green-900";
+        if(!isCorrect && isSelected) return "bg-red-300 text-red-900";
         return "bg-gray-300"
     }
 

@@ -12,6 +12,10 @@ export const DASHBOARD_ROUTES = [
         href : "/flash-card"
     },
     {
+        label : "Sentence Practice",
+        href : "/sentece"
+    },
+    {
         label : "Profile",
         href : "/profile"
     },

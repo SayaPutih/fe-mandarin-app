@@ -21,3 +21,23 @@ export const ButtonNext =({
 
     )
 }
+
+
+export const ButtonSubmit =({
+    label,
+    onClick 
+} : Props )=>{
+    return(
+
+        <button 
+            onClick={onClick}
+            className={`
+                px-5 p-2 shadow-md rounded-md text-yellow-100 font-bold
+                bg-yellow-500 shadow-yellow-900    
+            `}
+        >
+            {label}
+        </button>
+
+    )
+}
