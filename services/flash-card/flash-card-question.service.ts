@@ -13,3 +13,10 @@ export const GetFlashCardSingleQuestion = async ()=>{
     const response = await api.get("flash-card/single-question");
     return response.data;
 }
+
+
+export const GetFlashCardInitiateQuestion = async ()=>{
+
+    const response = await api.get("flash-card/initiate");
+    return response.data;
+}

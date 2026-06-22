@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {FlashCard} from "@/components/flash-card/Card"
-import FlashCardOptions from "@/components/flash-card/Options"
-import FlashCardOptionPage from "@/components/flash-card/FlashCardPage";
+import {FlashCard} from "@/components/(student)/flash-card/Card"
+import FlashCardOptions from "@/components/(student)/flash-card/Options"
+
+import FlashCardOptionPage from "@/components/(student)/flash-card/FlashCardPage";
+
+import FlashCardRLearningPage from "@/components/(student)/learning/FlashCardLearningPage";
 
 export default function FlashCardPage() {
 
@@ -31,17 +34,6 @@ export default function FlashCardPage() {
     //   </main>
     // </div>
 
-    <FlashCardOptionPage />
-
-        // <div className="flex flex-col flex-1 items-center justify-center    font-sans dark:bg-black bg-white h-full w-full p-8 rounded-3xl">
-        // <main className="space-y-4 w-1/2 flex items-center justify-center flex-col">
-        //     <FlashCard 
-        //         hanzi="丑人"
-        //         pinyin="Hello"
-        //         meaning="Hello"
-        //     />
-        //     <FlashCardOptions />
-        // </main>
-        // </div>
+      <FlashCardRLearningPage />
     );
 }

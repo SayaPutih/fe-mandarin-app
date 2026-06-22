@@ -3,6 +3,52 @@ interface Props{
     onClick : ()=>void
 }
 
+export const ButtonPrimary = ({
+    label,
+    onClick 
+} : Props)=>{
+    return(
+
+        <button
+            onClick={() => onClick()}
+            className="
+              bg-black
+              text-white
+              rounded-xl
+              p-3
+              font-medium
+              hover:opacity-90
+            "
+          >
+            {label}
+          </button>
+
+    )
+}
+
+export const ButtonSecondary = ({
+    label,
+    onClick 
+} : Props)=>{
+    return(
+
+        <button
+            onClick={() => onClick()}
+            className="
+              border
+              rounded-xl
+              p-3
+              font-medium
+              hover:bg-gray-50
+            "
+          >
+            {label}
+          </button>
+
+    )
+}
+
+
 export const ButtonNext =({
     label,
     onClick 

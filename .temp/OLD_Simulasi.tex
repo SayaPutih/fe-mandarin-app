@@ -1,0 +1,210 @@
+
+%-----------------------------------------------------------------------------%
+\subsection{Simulasi Prediksi menggunakan Studi Kasus}
+%-----------------------------------------------------------------------------%
+\subsection{Simulasi Prediksi Menggunakan Studi Kasus}
+
+Simulasi prediksi pada bagian ini dilakukan menggunakan data riwayat belajar pengguna yang terdiri dari hasil review (\textit{response history}), interval review (\textit{time history}), probabilitas recall sebelumnya (\textit{p-history}), serta tingkat kesulitan kosakata (\textit{difficulty}). Tujuan simulasi ini adalah menunjukkan bagaimana model GRU-HLR memproses riwayat belajar pengguna untuk menghasilkan prediksi \textit{half-life}, probabilitas recall, dan jadwal review berikutnya.
+
+\subsubsection{Pembentukan Vektor Input}
+
+Riwayat belajar pengguna direpresentasikan sebagai urutan vektor input:
+
+\begin{equation}
+x_t=[r_t,t_t,p_t,d_t]
+\end{equation}
+
+dengan data sebagai berikut:
+
+\begin{equation}
+x_1=[1,0,0.86,0.5]
+\end{equation}
+
+\begin{equation}
+x_2=[1,1,0.88,0.5]
+\end{equation}
+
+\begin{equation}
+x_3=[1,3,0.91,0.5]
+\end{equation}
+
+\begin{equation}
+x_4=[0,7,0.72,0.5]
+\end{equation}
+
+Pada penelitian ini, setiap vektor input terdiri atas empat fitur, yaitu hasil review ($r_t$), interval review ($t_t$), probabilitas recall sebelumnya ($p_t$), dan tingkat kesulitan kosakata ($d_t$).
+
+\subsubsection{Perhitungan Update Gate}
+
+Untuk setiap \textit{timestep}, model menghitung \textit{update gate} menggunakan persamaan:
+
+\begin{equation}
+z_t=\sigma(W_zx_t+U_zh_{t-1}+b_z)
+\end{equation}
+
+Nilai \textit{update gate} menentukan seberapa besar informasi dari \textit{hidden state} sebelumnya dipertahankan untuk membentuk representasi memori baru.
+
+\subsubsection{Perhitungan Reset Gate}
+
+Selanjutnya dihitung \textit{reset gate}:
+
+\begin{equation}
+r_t=\sigma(W_rx_t+U_rh_{t-1}+b_r)
+\end{equation}
+
+\textit{Reset gate} digunakan untuk menentukan seberapa besar informasi historis yang digunakan kembali dalam proses pembentukan memori baru.
+
+\subsubsection{Perhitungan Candidate Hidden State}
+
+\textit{Candidate hidden state} dihitung menggunakan persamaan:
+
+\begin{equation}
+\tilde{h_t}
+=
+\tanh
+\left(
+W_hx_t
++
+U_h(r_t \odot h_{t-1})
++
+b_h
+\right)
+\end{equation}
+
+Nilai ini merepresentasikan kandidat memori baru yang akan dipertimbangkan oleh model.
+
+\subsubsection{Perhitungan Hidden State}
+
+\textit{Hidden state} akhir pada setiap \textit{timestep} dihitung dengan menggabungkan \textit{hidden state} sebelumnya dan \textit{candidate hidden state}:
+
+\begin{equation}
+h_t
+=
+(1-z_t)\odot h_{t-1}
++
+z_t\odot \tilde{h_t}
+\end{equation}
+
+Proses ini dilakukan secara berulang untuk seluruh urutan interaksi pengguna:
+
+\begin{equation}
+h_0 \rightarrow h_1 \rightarrow h_2 \rightarrow h_3 \rightarrow h_4
+\end{equation}
+
+Setelah seluruh data diproses, diperoleh \textit{hidden state} terakhir ($h_4$) yang berisi representasi memori pengguna berdasarkan seluruh riwayat pembelajaran.
+
+\subsubsection{Prediksi Half-Life}
+
+\textit{Hidden state} terakhir kemudian dimasukkan ke \textit{output layer} untuk menghasilkan prediksi \textit{half-life}:
+
+\begin{equation}
+\hat{h}
+=
+W_oh_4+b_o
+\end{equation}
+
+Karena target model berupa nilai \textit{half-life} yang harus bernilai positif, hasil transformasi tersebut dipetakan menjadi prediksi akhir:
+
+\begin{equation}
+\text{HalfLife}
+=
+f(\hat{h})
+\end{equation}
+
+dengan $f$ merupakan fungsi aktivasi pada \textit{layer} keluaran.
+
+Sebagai ilustrasi, misalkan \textit{hidden state} terakhir yang dihasilkan model adalah:
+
+\begin{equation}
+h_4=
+\begin{bmatrix}
+0.87\\
+-0.42\\
+0.11\\
+\vdots\\
+0.55
+\end{bmatrix}
+\end{equation}
+
+Maka prediksi \textit{half-life} diperoleh melalui:
+
+\begin{equation}
+\text{HalfLife}
+=
+W_oh_4+b_o
+=
+6.50
+\end{equation}
+
+hari.
+
+\subsubsection{Perhitungan Probabilitas Recall}
+
+Setelah nilai \textit{half-life} diperoleh, probabilitas recall dihitung menggunakan persamaan peluruhan memori:
+
+\begin{equation}
+R(t)
+=
+2^{-t/h}
+\end{equation}
+
+dengan:
+
+\begin{itemize}
+    \item $R(t)$ = probabilitas mengingat
+    \item $t$ = jumlah hari sejak review terakhir
+    \item $h$ = \textit{half-life} hasil prediksi model
+\end{itemize}
+
+Misalnya untuk interval 3 hari dan \textit{half-life} 6,50 hari:
+
+\begin{equation}
+R(3)
+=
+2^{-3/6.5}
+\end{equation}
+
+\begin{equation}
+R(3)
+=
+0.726
+\end{equation}
+
+Artinya pengguna diperkirakan masih dapat mengingat kosakata tersebut dengan probabilitas sebesar 72,6\%.
+
+\subsubsection{Perhitungan Jadwal Review Berikutnya}
+
+Untuk menentukan waktu review berikutnya digunakan target recall sebesar 90\%.
+
+\begin{equation}
+t_{next}
+=
+\frac
+{h\ln(0.9)}
+{\ln(0.5)}
+\end{equation}
+
+Dengan \textit{half-life} sebesar 6,50 hari:
+
+\begin{equation}
+t_{next}
+=
+\frac
+{6.50\times\ln(0.9)}
+{\ln(0.5)}
+=
+0.987
+\end{equation}
+
+Hasil tersebut dibulatkan menjadi:
+
+\begin{equation}
+t_{next}
+=
+1
+\end{equation}
+
+hari.
+
+Dengan demikian sistem akan merekomendasikan pengguna untuk melakukan review kembali satu hari setelah review terakhir agar probabilitas recall tetap berada di atas target yang ditentukan.
+

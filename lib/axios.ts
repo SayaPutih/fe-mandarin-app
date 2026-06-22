@@ -10,6 +10,7 @@ api.interceptors.request.use(
     (config)=>{
 
         const token = localStorage.getItem("token")
+        console.log("TOKEN =", token);
 
         if(token){
             config.headers.Authorization = `Bearer ${token}`;
@@ -18,3 +19,27 @@ api.interceptors.request.use(
         return config;
     }
 )
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+
+    if(error.response?.status === 401){
+      localStorage.removeItem("Token");
+      window.location.href = "/login";
+
+      return Promise.reject(
+        new Error("Session expired")
+      );
+
+    }
+
+    return Promise.reject(
+      new Error(
+        error.response?.data?.message ||
+        "Something went wrong"
+      )
+    );
+  }
+);
+

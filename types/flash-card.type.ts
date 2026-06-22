@@ -9,6 +9,7 @@ export interface flashCard{
     meaning : string[];
     options : string[];
     hsk_level : number;
+    lexicalDifficulty : number;
     expected_answer : string;
 }
 
@@ -18,3 +19,10 @@ export interface hanzi{
     meaning : string;
     hsk_level : number;
 }
+
+export interface FlashCardAnswerDTO {
+    wordId: string;
+    answer: string;
+    expected_answer: string;
+    answerTimeMs: number;
+};

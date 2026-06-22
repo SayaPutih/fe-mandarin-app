@@ -24,7 +24,7 @@ export default function Home() {
   const router = useRouter();
   const checkAuth =()=>{
     
-    router.push("/home")
+    router.push("/(dashboard)/home")
   }
 
   return (
