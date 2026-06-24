@@ -372,7 +372,7 @@ export default function InitiateFlashCard() {
                                             mt-2
                                         "
                                     >
-                                        Preparing next question...
+                                        Model Is Calculating Your Next Review...
                                     </p>
                                 </div>
 

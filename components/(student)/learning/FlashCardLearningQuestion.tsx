@@ -284,7 +284,7 @@ export default function FlashCardLearningQuestionPage({
 
 
     return (
-        <section className="flex flex-col flex-1 items-center justify-start font-sans bg-white min-h-[calc(100vh-200px)] relative py-4 space-y-4 w-full rounded-3xl">
+        <section className="flex flex-col items-center justify-start font-sans bg-white xmin-h-[calc(110vh-200px)] relative py-2 space-y-2 w-full rounded-3xl">
 
             <div className="text-sm text-gray-500 font-bold text-center flex items-center justify-between gap-4 px-8 w-full">
 

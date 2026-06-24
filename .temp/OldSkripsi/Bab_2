@@ -1,0 +1,230 @@
+\chapter{LANDASAN TEORI}
+
+\section{Inteligent Tutoring System (ITS)}
+Intelligent Tutoring System (ITS) merupakan sistem pembelajaran adaptif yang mampu memodelkan pengetahuan peserta didik, memprediksi tingkat penguasaan materi, serta memberikan materi maupun latihan yang disesuaikan dengan kebutuhan masing-masing pengguna. Dalam ITS, sistem dapat mengidentifikasi kondisi pengetahuan pengguna dan memberikan umpan balik yang dipersonalisasi untuk meningkatkan efektivitas proses belajar \cite{tang2024fairkt}. Secara umum Intelligent Tutoring System terdiri atas beberapa komponen utama, yaitu \textit{domain model} yang merepresentasikan materi pembelajaran, \textit{student model} yang menggambarkan tingkat penguasaan peserta didik, \textit{tutoring model} yang menentukan strategi pembelajaran, serta \textit{user interface} yang menjadi media interaksi antara sistem dan pengguna. Melalui kombinasi komponen tersebut, ITS mampu menyediakan pengalaman belajar yang lebih personal dan adaptif \cite{woolf2009building}. 
+
+\subsection{ITS dalam Pembelajaran Bahasa}
+Pemanfaatan ITS dalam pembelajaran bahasa telah berkembang pesat seiring meningkatnya penggunaan platform pembelajaran digital. ITS memungkinkan sistem untuk memantau perkembangan kemampuan bahasa pengguna, mengidentifikasi kesulitan belajar, dan memberikan latihan yang sesuai dengan kebutuhan individu sehingga proses pembelajaran menjadi lebih efektif dan efisien \cite{mayhew2020simultaneous}.
+
+
+\section{Pembelajaran Bahasa Mandarin}
+Pembelajaran bahasa Mandarin merupakan proses penguasaan kemampuan berbahasa yang mencakup aspek kosakata, tata bahasa, keterampilan membaca, menulis, mendengarkan, dan berbicara. Dalam konteks bahasa asing, pembelajaran bahasa Mandarin memiliki karakteristik yang unik karena melibatkan penguasaan sistem hanzi, pinyin, serta penggunaan nada yang memengaruhi makna kata \cite{Tajuddin2026}.
+
+
+
+\subsection{HSK dan Kosakata Mandarin}
+HSK (\textit{Hanyu Shuiping Kaoshi}) merupakan standar kompetensi bahasa Mandarin yang digunakan untuk mengukur kemampuan pembelajar bahasa Mandarin sebagai bahasa asing. Sejak diterbitkannya \textit{Chinese Proficiency Grading Standards for International Chinese Language Education}, kompetensi bahasa Mandarin diklasifikasikan ke dalam tiga tingkat utama dan sembilan level kemampuan yang mencakup aspek suku kata, karakter Hanzi, kosakata, dan tata bahasa \cite{MOE2021HSK3}. Dalam standar HSK 3.0, kosakata menjadi salah satu komponen utama yang digunakan untuk mengukur kemampuan pembelajar bahasa Mandarin. Jumlah kosakata yang harus dikuasai meningkat secara bertahap dari 500 kosakata pada Band 1 hingga mencapai 11.092 kosakata pada tingkat lanjutan (Band 7--9). Selain kosakata, standar ini juga mempertimbangkan jumlah suku kata, karakter Hanzi, dan tata bahasa yang harus dikuasai pada setiap tingkat kemampuan \cite{MOE2021HSK3}.
+
+\begin{table}[H]
+\centering
+\caption{Kriteria Kuantitatif Standar Kemampuan Bahasa Mandarin HSK 3.0}
+\label{tab:hsk3_quantitative}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Level} & \textbf{Band} & \textbf{Syllable} & \textbf{Hanzi} & \textbf{Vocabulary} & \textbf{Grammar} \\
+\hline
+\multirow{3}{*}{Primary}
+& 1 & 269 & 300 & 500 & 48 \\
+\cline{2-6}
+& 2 & 468 & 600 & 1,272 & 129 \\
+\cline{2-6}
+& 3 & 608 & 900 & 2,245 & 210 \\
+\hline
+\multirow{3}{*}{Intermediate}
+& 4 & 724 & 1,200 & 3,245 & 286 \\
+\cline{2-6}
+& 5 & 822 & 1,500 & 4,316 & 357 \\
+\cline{2-6}
+& 6 & 908 & 1,800 & 5,456 & 424 \\
+\hline
+Advanced & 7--9 & 1,110 & 3,000 & 11,092 & 572 \\
+\hline
+\end{tabular}
+
+\vspace{0.2cm}
+\caption*{Sumber: Chinese Proficiency Grading Standards for International Chinese Language Education (2021)}
+\end{table}
+
+\section{Digital Flashcard}
+
+\textit{Digital flashcard} merupakan media pembelajaran yang menyajikan informasi dalam bentuk kartu digital yang digunakan untuk membantu proses penguasaan dan retensi pengetahuan melalui aktivitas pengulangan secara berkala. Penggunaan \textit{flashcard} didasarkan pada prinsip \textit{active recall}, yaitu proses mengingat kembali informasi dari memori tanpa melihat jawaban secara langsung sehingga dapat memperkuat pembentukan memori jangka panjang. Dalam pembelajaran bahasa, khususnya pembelajaran kosakata, \textit{digital flashcard} terbukti mampu meningkatkan penguasaan kosakata dan efektivitas belajar melalui kombinasi antara latihan pengambilan kembali informasi dan pengulangan materi \cite{setiawan2024,armus2025}. Berbagai aplikasi pembelajaran modern seperti Anki dan MaiMemo juga memanfaatkan \textit{digital flashcard} sebagai media utama pembelajaran kosakata karena mampu mendukung proses pengulangan yang terstruktur dan adaptif sesuai kemampuan pengguna \cite{su2023maimemo}.
+
+\subsection{Pengambilan Jumlah Kosakata Flashcard}
+
+Jumlah kosakata yang diberikan dalam satu sesi pembelajaran perlu disesuaikan dengan kapasitas belajar pengguna agar tidak menimbulkan beban kognitif yang berlebihan. Penelitian dalam pembelajaran bahasa kedua menunjukkan bahwa pengenalan kosakata baru secara bertahap lebih efektif dibandingkan pemberian kosakata dalam jumlah besar pada satu waktu karena pengguna memerlukan waktu untuk membangun pemahaman dan retensi terhadap kosakata yang dipelajari \cite{nation2013}. Selain mempelajari kosakata baru, pengguna juga perlu melakukan proses peninjauan kembali terhadap kosakata yang telah dipelajari sebelumnya untuk mempertahankan retensi memori. Oleh karena itu, aplikasi pembelajaran kosakata umumnya mengombinasikan pemberian kosakata baru dengan aktivitas pengulangan kosakata lama dalam setiap sesi pembelajaran guna menjaga keseimbangan antara akuisisi pengetahuan baru dan retensi memori jangka panjang \cite{settles2016hlr}.
+
+
+\section{Forgetting Curve}
+
+\noindent\hspace*{1em}
+\textit{Forgetting curve} merupakan konsep yang menjelaskan bahwa kemampuan seseorang dalam mengingat informasi akan menurun seiring berjalannya waktu apabila informasi tersebut tidak ditinjau kembali melalui proses pengulangan. Konsep ini pertama kali diperkenalkan oleh Hermann Ebbinghaus melalui penelitian mengenai memori manusia dan menunjukkan bahwa sebagian besar informasi yang dipelajari dapat terlupakan dalam waktu relatif singkat \cite{murre2015replication}. Temuan tersebut menjadi dasar pengembangan berbagai metode pembelajaran yang bertujuan mempertahankan retensi memori, seperti \textit{spaced repetition} dan sistem pembelajaran adaptif \cite{Maier2023MemDec}.
+
+\subsection{Memory Decay}
+
+\textit{Memory decay} merupakan teori yang menjelaskan bahwa kekuatan memori terhadap suatu informasi akan berkurang secara bertahap seiring berjalannya waktu apabila tidak dilakukan proses peninjauan ulang. Dalam konteks pembelajaran, fenomena ini menyebabkan tingkat penguasaan materi dapat menurun setelah periode tertentu sejak latihan terakhir dilakukan \cite{Choffin2019DAS3H}. Proses pelupaan umumnya direpresentasikan menggunakan fungsi eksponensial sebagai berikut \cite{Yadav2025MemoryRetention}:
+
+\begin{equation}
+R(t)=e^{-t/S}
+\end{equation}
+
+dengan $R(t)$ menyatakan tingkat retensi memori pada waktu $t$, sedangkan $S$ merupakan stabilitas memori. Semakin besar nilai $S$, semakin lambat proses pelupaan terjadi sehingga informasi dapat dipertahankan lebih lama dalam ingatan.
+\section{Spaced Repetition}
+
+\textit{Spaced repetition} merupakan metode pembelajaran yang mengatur proses pengulangan materi pada interval waktu tertentu untuk meningkatkan retensi memori jangka panjang \cite{su2024optimizing}. Metode ini dikembangkan berdasarkan konsep \textit{forgetting curve}, yaitu kecenderungan memori untuk menurun seiring berjalannya waktu apabila tidak dilakukan proses pengulangan \cite{Choffin2019DAS3H}. Dengan menjadwalkan peninjauan ulang sebelum informasi terlupakan, \textit{spaced repetition} dapat membantu mempertahankan penguasaan materi secara lebih efektif dibandingkan pengulangan yang dilakukan secara berdekatan dalam satu waktu \cite{tabibian2016unbounded}.
+
+\subsection{Spacing Effect}
+
+\textit{Spacing effect} merupakan fenomena yang menunjukkan bahwa proses belajar akan menghasilkan retensi memori yang lebih baik apabila pengulangan dilakukan dengan jeda waktu tertentu dibandingkan secara berurutan dalam satu sesi belajar \cite{smith2017spacing}. Fenomena ini menjadi dasar teoritis dari berbagai metode \textit{spaced repetition} modern \cite{settles2016trainable}.
+
+\subsection{Leitner System}
+
+\textit{Leitner System} merupakan salah satu metode \textit{spaced repetition} yang mengelompokkan kartu pembelajaran ke dalam beberapa tingkat berdasarkan tingkat penguasaan pengguna \cite{tabibian2016unbounded}. Kartu yang dijawab benar akan ditinjau kembali dengan interval yang lebih panjang, sedangkan kartu yang dijawab salah akan ditinjau lebih sering sehingga pengguna dapat memfokuskan proses belajar pada materi yang belum dikuasai.
+
+\subsection{Half-Life Regression (HLR)}
+
+\textit{Half-Life Regression} (HLR) merupakan model \textit{spaced repetition} berbasis \textit{machine learning} yang digunakan untuk memperkirakan retensi memori pengguna terhadap suatu informasi \cite{settles2016trainable}. HLR memodelkan kekuatan memori menggunakan nilai \textit{half-life}, yaitu waktu yang diperlukan hingga probabilitas mengingat suatu informasi berkurang setengahnya. Estimasi \textit{half-life} dihitung menggunakan:
+
+\begin{equation}
+\hat{h}=2^{\Theta \cdot x}
+\end{equation}
+
+dengan $\Theta$ sebagai parameter model dan $x$ sebagai vektor fitur pembelajaran. Setelah nilai \textit{half-life} diperoleh, probabilitas mengingat dapat dihitung menggunakan:
+
+\begin{equation}
+p=2^{-\frac{\Delta}{\hat{h}}}
+\end{equation}
+
+dengan $p$ menyatakan probabilitas mengingat dan $\Delta$ menyatakan interval waktu sejak peninjauan terakhir dilakukan \cite{settles2016trainable}. Pendekatan ini memungkinkan sistem menghasilkan jadwal pengulangan yang lebih adaptif berdasarkan riwayat pembelajaran pengguna.
+
+
+
+
+\section{Gated Recurrent Unit (GRU)}
+
+\textit{Gated Recurrent Unit} (GRU) merupakan salah satu arsitektur \textit{Recurrent Neural Network} (RNN) yang dirancang untuk memproses data sekuensial dan mengatasi permasalahan \textit{vanishing gradient} yang sering terjadi pada RNN konvensional \cite{cho2014gru}. GRU menggunakan mekanisme \textit{gate} untuk mengatur informasi yang perlu dipertahankan maupun dilupakan dari urutan data sebelumnya. Dibandingkan dengan \textit{Long Short-Term Memory} (LSTM), GRU memiliki struktur yang lebih sederhana karena hanya menggunakan dua gerbang utama, yaitu \textit{reset gate} dan \textit{update gate}, sehingga proses pelatihan dapat dilakukan dengan jumlah parameter yang lebih sedikit \cite{goodfellow2016deep}.
+
+% \begin{figure}[htbp]
+% \centering
+% \includegraphics[width=0.8\textwidth]{assets/NEW/BAB 2/GRU.png}
+% \caption{Arsitektur Gated Recurrent Unit (GRU)}
+% \label{fig:gru}
+% \end{figure}
+
+\textit{Reset gate} digunakan untuk menentukan seberapa besar informasi dari \textit{hidden state} sebelumnya yang akan digunakan dalam pembentukan memori baru. Nilai \textit{reset gate} dihitung menggunakan persamaan berikut:
+
+\begin{equation}
+r_t = \sigma(W_r x_t + U_r h_{t-1} + b_r)
+\end{equation}
+
+Selanjutnya, \textit{update gate} digunakan untuk menentukan proporsi informasi lama yang akan dipertahankan dan informasi baru yang akan ditambahkan ke dalam memori. Nilai \textit{update gate} dihitung menggunakan:
+
+\begin{equation}
+z_t = \sigma(W_z x_t + U_z h_{t-1} + b_z)
+\end{equation}
+
+Setelah kedua gerbang dihitung, GRU membentuk \textit{candidate hidden state} yang merepresentasikan informasi baru dari input saat ini:
+
+\begin{equation}
+\tilde{h}_t =
+\tanh
+\left(
+W_h x_t +
+U_h
+\left(
+r_t \odot h_{t-1}
+\right)
++
+b_h
+\right)
+\end{equation}
+
+Kemudian \textit{hidden state} akhir diperoleh dengan menggabungkan informasi lama dan informasi baru menggunakan \textit{update gate}:
+\addequation{Testing Rumus}{
+\begin{equation}
+h_t =
+(1-z_t)\odot h_{t-1}
++
+z_t \odot \tilde{h}_t
+\end{equation}
+}
+dengan $x_t$ menyatakan input pada waktu ke-$t$, $h_{t-1}$ menyatakan \textit{hidden state} sebelumnya, $r_t$ merupakan \textit{reset gate}, $z_t$ merupakan \textit{update gate}, $\tilde{h}_t$ merupakan \textit{candidate hidden state}, dan $h_t$ merupakan \textit{hidden state} yang dihasilkan pada waktu ke-$t$. Kemampuan GRU dalam mempelajari pola dari data sekuensial menjadikannya banyak digunakan dalam berbagai tugas prediksi berbasis urutan, termasuk pemodelan retensi memori pada sistem pembelajaran adaptif \cite{cho2014gru}.
+
+
+
+
+
+
+
+
+
+\section{GRU-HLR}
+
+\textit{GRU-HLR} (\textit{Gated Recurrent Unit Half-Life Regression}) merupakan pengembangan dari metode \textit{Half-Life Regression} (HLR) yang memanfaatkan kemampuan \textit{Gated Recurrent Unit} (GRU) untuk mempelajari pola retensi memori berdasarkan riwayat aktivitas belajar pengguna. Model ini menggunakan urutan hasil \textit{review} dan interval waktu antar \textit{review} untuk memperkirakan kondisi memori pengguna secara lebih adaptif dibandingkan HLR konvensional \cite{renduchintala2020gruhlr}.
+
+Pada GRU-HLR, kondisi memori pengguna diperbarui menggunakan lapisan GRU berdasarkan aktivitas pembelajaran yang dilakukan. Proses tersebut dapat dinyatakan sebagai berikut \cite{renduchintala2020gruhlr}:
+
+\begin{equation}
+s_i = f_{\theta}(s_{i-1},x_i)
+\end{equation}
+
+Keterangan:
+
+\begin{itemize}
+\item $s_i$ : kondisi memori pada aktivitas ke-$i$
+\item $s_{i-1}$ : kondisi memori sebelumnya
+\item $x_i$ : fitur aktivitas pembelajaran
+\item $f_{\theta}$ : fungsi GRU dengan parameter $\theta$
+\end{itemize}
+
+Kondisi memori yang dihasilkan kemudian digunakan untuk memperkirakan nilai \textit{half-life} sebagai berikut \cite{renduchintala2020gruhlr}:
+
+\begin{equation}
+\hat{h}*i = g*{\theta}(s_i)
+\end{equation}
+
+Keterangan:
+
+\begin{itemize}
+\item $\hat{h}*i$ : estimasi \textit{half-life}
+\item $s_i$ : kondisi memori hasil GRU
+\item $g*{\theta}$ : fungsi prediksi \textit{half-life}
+\end{itemize}
+
+Setelah nilai \textit{half-life} diperoleh, probabilitas pengguna mengingat suatu informasi dihitung menggunakan fungsi pelupaan berikut \cite{settles2016trainable}:
+
+\begin{equation}
+p_i = 2^{-\frac{\Delta_i}{\hat{h}_i}}
+\end{equation}
+
+Keterangan:
+
+\begin{itemize}
+\item $p_i$ : probabilitas mengingat
+\item $\Delta_i$ : interval waktu sejak \textit{review} terakhir
+\item $\hat{h}_i$ : estimasi \textit{half-life}
+\end{itemize}
+
+
+
+
+
+
+\section{Pengujian Aplikasi}
+
+Pengujian aplikasi dilakukan untuk memastikan bahwa sistem yang dikembangkan dapat berjalan sesuai dengan kebutuhan fungsional dan menghasilkan performa yang baik. Salah satu metode yang digunakan adalah \textit{Black Box Testing}, yaitu metode pengujian yang berfokus pada masukan dan keluaran sistem tanpa memperhatikan struktur internal program \cite{blackboxTesting}. Melalui pengujian ini, setiap fitur pada aplikasi dapat diverifikasi apakah telah berjalan sesuai dengan skenario penggunaan yang dirancang.
+
+Selain pengujian fungsional, evaluasi juga dilakukan terhadap model \textit{GRU-HLR} yang digunakan untuk memprediksi retensi memori pengguna. Evaluasi model dilakukan menggunakan metrik \textit{Mean Absolute Error} (MAE) dan \textit{Root Mean Square Error} (RMSE) untuk mengukur tingkat kesalahan prediksi yang dihasilkan model. Semakin kecil nilai MAE dan RMSE yang diperoleh, semakin baik kemampuan model dalam memprediksi retensi memori pengguna \cite{gruhlr2020}.
+
+Pengujian berikutnya adalah \textit{Performance Benchmarking}, yaitu proses pengukuran kinerja sistem berdasarkan waktu respons dan efisiensi proses yang dijalankan \cite{performanceBenchmarking}. Pengujian ini bertujuan untuk memastikan bahwa aplikasi mampu memberikan respons yang cepat sehingga dapat mendukung proses pembelajaran pengguna secara optimal.
+
+
+
+
+
+
+
+
+
+
+
+

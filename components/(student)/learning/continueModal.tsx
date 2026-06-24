@@ -47,12 +47,12 @@ export const ContinueModal =({
             <div className="flex w-full flex-row gap-3 ">
                     
 
-                <button
+                {/* <button
                     onClick={() => router.push("/home")}
                     className="w-full rounded-xl border border-gray-900 bg-white py-3 font-medium text-gray-700 transition hover:bg-gray-50"
                 >
                     Finish Session
-                </button>
+                </button> */}
                 <button
                     onClick={next}
                     className="w-full rounded-xl bg-black py-3 font-medium text-white transition hover:scale-[1.02]"

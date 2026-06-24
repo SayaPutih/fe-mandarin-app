@@ -50,7 +50,7 @@ export default function LoginForm(){
 
     return(
         <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl absolute">
-            <h1 className="text-3xl font-bold">Mandarin  LMS</h1>
+            <h1 className="text-3xl font-bold">Mandarin  Flash Card</h1>
             <p className="mt-2 text-slate-500">
                 Sign in to continue learning
             </p>

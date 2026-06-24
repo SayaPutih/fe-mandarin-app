@@ -46,10 +46,10 @@ export default function ReviewWordsPage() {
     }
 
     return (
-    <div className="min-h-screen rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100 p-4">
+    <div className=" rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100 p-4 min-h-[calc(110vh-200px)]">
         {/* HEADER */}
 
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between">
             <div>
                 <h1 className="text-2xl font-bold">
                 Reviewed Words

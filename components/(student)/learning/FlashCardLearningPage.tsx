@@ -53,7 +53,8 @@ export default function FlashCardRLearningPage() {
                 h-full relative
                 p-4 space-y-4
                 w-full rounded-3xl
-                min-h-[calc(80vh-200px)]
+                min-h-[calc(110vh-200px)]
+               
             "
         >
             

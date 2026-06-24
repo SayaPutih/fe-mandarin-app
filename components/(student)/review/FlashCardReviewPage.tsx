@@ -7,7 +7,7 @@ import { GetFlashCardReviewQuestions } from "@/services/flash-card/flash-card-re
 import FlashCardReviewPreview from "./FlashCardReviewPreview";
 import FlashCardReviewQuestion from "./FlashCardReviewQuestion";
 import NoReviewModal from "./noReviewModal";
-
+import FlashCardLearningQuestionPage from "../learning/FlashCardLearningQuestion";
 export default function FlashCardReviewPage() {
     
     const[flashCardReviewBatch , setFlashCardReviewBatch] = useState<flashCard[]>([]);
@@ -36,6 +36,7 @@ export default function FlashCardReviewPage() {
         getAllReviewQuestions();
         console.log("Use Effected")
     },[])
+    
 
     return (
         <section
@@ -47,14 +48,28 @@ export default function FlashCardReviewPage() {
                 h-full relative
                 py-4 space-y-4
                 w-full rounded-3xl 
-                min-h-[calc(100vh-200px)]
+                min-h-[calc(110vh-200px)]
             "
         >
             
-            {state === "preview" ? (
+            {loading ? (
+                <div className="flex flex-1 items-center justify-center">
+                    <div
+                        className="
+                            h-12 w-12
+                            animate-spin
+                            rounded-full
+                            border-4
+                            border-gray-200
+                            border-t-gray-900
+                        "
+                    />
+                </div>
+            ) : state === "preview" ? (
                 <FlashCardReviewPreview flashCardReviewBatchProps={flashCardReviewBatch} onClick={goToQuestion}/>
             ) : state === "question" ? (
-                <FlashCardReviewQuestion flashCardReviewBatchProps={flashCardReviewBatch} onClick={()=>setState("noReview")} />
+                // <FlashCardReviewQuestion flashCardReviewBatchProps={flashCardReviewBatch} onClick={()=>setState("noReview")} />
+                <FlashCardLearningQuestionPage flashCardLearningBatchProps={flashCardReviewBatch} onClick={()=>setState("noReview")} />
             ) : state === "noReview" ? (
                 <NoReviewModal />
             ) : (

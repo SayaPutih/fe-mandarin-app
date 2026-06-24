@@ -33,13 +33,13 @@ export default function HomeSection() {
           border
           border-gray-100
           shadow-sm
-          min-h-[calc(100vh-200px)]
+          min-h-[calc(110vh-200px)]
       "
   >
       <div className="mb-6">
 
           <h1 className="text-2xl font-bold">
-              Welcome to Mandarin LMS
+              Welcome to Mandarin Flashcard
           </h1>
 
           <p className="text-gray-500 mt-1">

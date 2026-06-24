@@ -190,16 +190,25 @@ export default function FlashCardReviewPage({
         flashCardReviewBatch.length === 0
     ) {
         return (
-            <section className="flex flex-col flex-1 items-center justify-center bg-white rounded-3xl">
-                <h1 className="text-xl font-bold">
-                    Loading...
-                </h1>
+            <section className="flex flex-col flex-1 items-center justify-start relative py-2 space-y-2 bg-white rounded-3xl min-h-[calc(110vh-200px)]">
+                <div className="flex flex-1 items-center justify-center">
+                    <div
+                        className="
+                            h-12 w-12
+                            animate-spin
+                            rounded-full
+                            border-4
+                            border-gray-200
+                            border-t-gray-900
+                        "
+                    />
+                </div>
             </section>
         );
     }
 
     return (
-        <section className="flex flex-col flex-1 items-center justify-start font-sans bg-white h-full relative py-4 space-y-4 w-full rounded-3xl">
+        <section className="flex flex-col flex-1 items-center justify-start font-sans bg-white h-full relative py-4 space-y-4 w-full rounded-3xl min-h-[calc(110vh-200px)]">
 
             <div className="text-sm text-gray-500 font-bold text-center flex items-center justify-between gap-4 px-8 w-full">
 
@@ -217,7 +226,7 @@ export default function FlashCardReviewPage({
 
             </div>
 
-            <div className="flex items-center justify-center flex-col w-full gap-4 h-full">
+            <div className="flex items-center justify-center flex-col w-full gap-4 h-full min-h-[calc(100vh-200px)]">
                 {flashCardCurrent && !isDone && !isSubmiting && (
                     <FlashCardWordQuestion 
                         currentWord={flashCardCurrent}
