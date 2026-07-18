@@ -1,11 +1,22 @@
 import { api } from "@/lib/axios";
 import { flashCard } from "@/types/flash-card.type";
 
-export const GetFlashCardQuestions = async ()=>{
+// export const GetFlashCardQuestions = async ()=>{
 
-    const response = await api.get("flash-card/questions");
-    return response.data;
-}
+//     const response = await api.get("flash-card/questions");
+//     return response.data;
+// }
+
+export const GetFlashCardQuestions = async (
+  hskLevel: number
+) => {
+  const response = await api.get(
+    `/flash-card/questions?hskLevel=${hskLevel}`
+  );
+
+  return response.data;
+};
+
 
 
 export const GetFlashCardSingleQuestion = async ()=>{

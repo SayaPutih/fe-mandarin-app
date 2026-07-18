@@ -33,6 +33,7 @@ const [editForm, setEditForm] = useState({
   pos: "",
   radical: "",
   lexicalDifficulty: "",
+  meanings: [""],
 });
 
 const fetchWord = async () => {
@@ -42,63 +43,63 @@ const fetchWord = async () => {
     setWord(data);
 
     setEditForm({
-          simplified: data.simplified || "",
-          pinyin: data.pinyin || "",
-          hskLevel: data.hskLevel || 1,
-          pos: data.pos || "",
-          radical: data.radical || "",
-          lexicalDifficulty:
-            data.lexicalDifficulty?.toString() ||
-            "",
-        });
-      }
-    };
+      simplified: data.simplified || "",
+      pinyin: data.pinyin || "",
+      hskLevel: data.hskLevel || 1,
+      pos: data.pos || "",
+      radical: data.radical || "",
+      lexicalDifficulty:
+        data.lexicalDifficulty?.toString() || "",
+      meanings:
+        data.meanings?.map((m: any) => m.meaning) || [""],
+    });
+  }
+};
 
-    const handleUpdate = async () => {
-      try {
-        await updateVocabulary(id, {
-          ...editForm,
-          lexicalDifficulty:
-            editForm.lexicalDifficulty === ""
-              ? null
-              : Number(
-                  editForm.lexicalDifficulty
-                ),
-        });
+const handleUpdate = async () => {
+  try {
+    await updateVocabulary(id, {
+      ...editForm,
+      lexicalDifficulty:
+        editForm.lexicalDifficulty === ""
+          ? null
+          : Number(editForm.lexicalDifficulty),
+      meanings: editForm.meanings.filter(
+        (m) => m.trim() !== ""
+      ),
+    });
 
-        setShowEditModal(false);
+    setShowEditModal(false);
 
-        fetchWord();
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    fetchWord();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    const handleDelete = async () => {
-      try {
-        await deleteVocabulary(id);
+const handleDelete = async () => {
+  try {
+    await deleteVocabulary(id);
 
-        router.push(
-          "/teacher/vocabulary"
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    router.push("/teacher/vocabulary");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    useEffect(() => {
-      if (id) {
-        fetchWord();
-      }
-    }, [id]);
+useEffect(() => {
+  if (id) {
+    fetchWord();
+  }
+}, [id]);
 
-    if (!word) {
-      return (
-        <div className="p-6">
-          Loading...
-        </div>
-      );
-    }
+if (!word) {
+  return (
+    <div className="p-6">
+      Loading...
+    </div>
+  );
+}
 
 return (
   <>
@@ -202,33 +203,65 @@ return (
 
         {/* MEANINGS */}
 
-        <div className="mb-8 rounded-2xl border bg-white p-6 shadow-sm">
-          <h2 className="mb-6 text-2xl font-semibold">
-            Meanings
-          </h2>
+<div className="md:col-span-2 mb-4">
+  <label className="mb-2 block text-sm font-medium text-zinc-600">
+    Meanings
+  </label>
 
-          <div className="grid gap-4">
-            {word.meanings?.map(
-              (
-                meaning: any,
-                index: number
-              ) => (
-                <div
-                  key={meaning.id}
-                  className="flex items-center gap-4 rounded-xl border p-5"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
-                    {index + 1}
-                  </div>
+  <div className="space-y-3">
+    {editForm.meanings.map((meaning, index) => (
+      <div
+        key={index}
+        className="flex gap-2"
+      >
+        <input
+          value={meaning}
+          onChange={(e) => {
+            const updated = [...editForm.meanings];
+            updated[index] = e.target.value;
 
-                  <div className="text-lg">
-                    {meaning.meaning}
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
+            setEditForm({
+              ...editForm,
+              meanings: updated,
+            });
+          }}
+          className="flex-1 rounded-xl border bg-zinc-50 p-3"
+        />
+
+        <button
+          type="button"
+          onClick={() => {
+            const updated = editForm.meanings.filter(
+              (_, i) => i !== index
+            );
+
+            setEditForm({
+              ...editForm,
+              meanings:
+                updated.length > 0 ? updated : [""],
+            });
+          }}
+          className="rounded-xl border px-4 hover:bg-red-100"
+        >
+          ✕
+        </button>
+      </div>
+    ))}
+  </div>
+
+  <button
+    type="button"
+    onClick={() =>
+      setEditForm({
+        ...editForm,
+        meanings: [...editForm.meanings, ""],
+      })
+    }
+    className="mt-3 rounded-xl border px-4 py-2"
+  >
+    + Add Meaning
+  </button>
+</div>
 
         {/* INFO */}
 
@@ -441,6 +474,71 @@ return (
                 </div>
 
               </div>
+              <div className="md:col-span-2">
+  <label className="mb- block text-sm font-medium text-zinc-600 ">
+    Meanings
+  </label>
+
+  <div className="space-y-3">
+    {editForm.meanings.map((meaning, index) => (
+      <div
+        key={index}
+        className="flex gap-2"
+      >
+        <input
+          value={meaning}
+          onChange={(e) => {
+            const updated = [...editForm.meanings];
+            updated[index] = e.target.value;
+
+            setEditForm({
+              ...editForm,
+              meanings: updated,
+            });
+          }}
+          className="flex-1 rounded-xl border bg-zinc-50 p-3 transition focus:border-black focus:outline-none"
+        />
+
+        <button
+          type="button"
+          onClick={() => {
+            const updated =
+              editForm.meanings.filter(
+                (_, i) => i !== index
+              );
+
+            setEditForm({
+              ...editForm,
+              meanings:
+                updated.length > 0
+                  ? updated
+                  : [""],
+            });
+          }}
+          className="rounded-xl border px-4 hover:bg-red-100"
+        >
+          ✕
+        </button>
+      </div>
+    ))}
+  </div>
+
+  <button
+    type="button"
+    onClick={() =>
+      setEditForm({
+        ...editForm,
+        meanings: [
+          ...editForm.meanings,
+          "",
+        ],
+      })
+    }
+    className="mt-3 rounded-xl border px-4 py-2 hover:bg-zinc-100"
+  >
+    + Add Meaning
+  </button>
+</div>
 
               {/* ACTIONS */}
 

@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {FlashCard} from "@/components/(student)/flash-card/Card"
-import FlashCardOptions from "@/components/(student)/flash-card/Options"
-
-import FlashCardOptionPage from "@/components/(student)/flash-card/FlashCardPage";
 
 import FlashCardRLearningPage from "@/components/(student)/learning/FlashCardLearningPage";
 
-export default function FlashCardPage() {
+interface Props{
+  cheatLevel : number;
+}
+
+export default function FlashCardPage({
+  cheatLevel 
+} : Props) {
 
   const [] = useState([]);
 
@@ -34,6 +36,6 @@ export default function FlashCardPage() {
     //   </main>
     // </div>
 
-      <FlashCardRLearningPage />
+      <FlashCardRLearningPage hskLevel={1}/>
     );
 }

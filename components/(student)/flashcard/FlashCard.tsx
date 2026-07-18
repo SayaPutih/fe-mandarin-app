@@ -15,6 +15,7 @@ export const FlashCard =({
 } : Props)=>{
 
     
+
     const getDifficultyInfo = (difficulty:number) => {
 
         if (difficulty < -0.75)
@@ -62,6 +63,16 @@ export const FlashCard =({
         return "bg-purple-100 text-purple-700";
     };
 
+    // const hanziNoWanted = ["我","我"]
+    // const hanziWarning =(word : string)=>{
+    //     if(hanziNoWanted.includes(word)) return "text-red-500";
+    //     return "text-green-500";
+    // }
+
+    //Eva : ALbert,kerlyn,evander,vayung,fikri,indah
+    //Ton : Tony,Credi,Jojo,Heryihanti,Joshia,kendy
+    //Vir : Virgi,Yulianto,tristan
+
     return(
         <div className="
             rounded-3xl 
@@ -69,9 +80,7 @@ export const FlashCard =({
             flex-col w-72 h-64 space-y-4 
             bg-white shadow-gray-500 shadow-md
         ">
-            <h1 className="
-                text-6xl mt-8
-            ">{hanzi}</h1>
+            <h1 className={`text-6xl mt-8`}>{hanzi}</h1>
 
             <div className="
                 flex items-center justify-center 

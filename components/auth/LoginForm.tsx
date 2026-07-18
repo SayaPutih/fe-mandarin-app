@@ -40,6 +40,11 @@ export default function LoginForm(){
                 password
             })
 
+            if(!res){
+                setError("There's An Error");
+                return;
+            }
+
             localStorage.setItem("token",res.token);
 
             redirectByRole(router);

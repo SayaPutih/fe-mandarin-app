@@ -19,13 +19,13 @@ export default function Footer() {
                         <div className="flex items-center gap-2 mb-2">
                             <BookOpen size={18} />
                             <h2 className="font-semibold text-sm">
-                                Mandarin LMS
+                                Mandarin Flash card
                             </h2>
                         </div>
 
                         <p className="text-xs text-gray-300 leading-relaxed">
-                            Platform pembelajaran Mandarin berbasis flashcard
-                            dan adaptive learning.
+                            Platform pembelajaran Mandarin Kosa kata Mandarin 
+                            berbasis flashcard.
                         </p>
                     </div>
 
@@ -78,7 +78,7 @@ export default function Footer() {
 
             <div className="border-t border-gray-800">
                 <div className="max-w-7xl mx-auto px-4 py-2 text-center text-xs text-gray-400">
-                    © 2026 Mandarin LMS
+                    © 2026 Mandarin VLS
                 </div>
             </div>
 

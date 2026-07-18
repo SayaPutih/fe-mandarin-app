@@ -27,6 +27,28 @@ export const LoadingBar =({
     )
 }
 
+export function LoadingSpinner() {
+  return (
+    <div className="flex min-h-[calc(110vh-200px)] flex-col items-center justify-center gap-4">
+      <div className="flex gap-2">
+        <div className="h-3 w-3 rounded-full bg-black animate-bounce" />
+        <div
+          className="h-3 w-3 rounded-full bg-black animate-bounce"
+          style={{ animationDelay: "0.15s" }}
+        />
+        <div
+          className="h-3 w-3 rounded-full bg-black animate-bounce"
+          style={{ animationDelay: "0.3s" }}
+        />
+      </div>
+
+      <p className="text-sm text-gray-500">
+        Loading...
+      </p>
+    </div>
+  );
+}
+
 
 
 // <div className="w-full">

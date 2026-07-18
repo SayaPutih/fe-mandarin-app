@@ -4,19 +4,31 @@ import {
   BookOpen,
   Languages,
   RotateCcw,
+  SquareCheck,
+  NotebookPen,
 } from "lucide-react";
 
 const CategorySection = () => {
   const categories = [
     {
       label: "Flashcard",
-      href: "/flash-card",
+      href: "/flashcard",
       icon: BookOpen,
+    },
+    {
+      label : "Schedule",
+      href : "/schedule",
+      icon : NotebookPen,
     },
     {
       label: "Words",
       href: "/words",
       icon: Languages,
+    },
+    {
+      label : "Recommeded Words",
+      href : "/recommended",
+      icon : SquareCheck,
     },
     {
       label: "Review",

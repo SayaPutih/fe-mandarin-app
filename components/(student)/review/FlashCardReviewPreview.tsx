@@ -2,6 +2,7 @@
 
 import { flashCard } from "@/types/flash-card.type";
 import { ButtonPrimary } from "@/components/ui/Buttons";
+import { MainCard } from "../Card/Card";
 
 interface Props {
     flashCardReviewBatchProps: flashCard[];
@@ -59,31 +60,28 @@ export default function FlashCardReviewPreview({
 
 
             <div className="flex-1 mt-4 overflow-y-auto">
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                    {flashCardReviewBatchProps.map((card) => (
-                        <div
-                            key={card.hanzi}
-                            className="
-                                border rounded-lg
-                                p-2
-                                text-center
-                                hover:bg-gray-50
-                            "
-                        >
-                            <p className="text-lg font-semibold">
-                                {card.hanzi}
-                            </p>
-
-                            <p className="text-[11px] text-gray-800 truncate">
-                                {card.pinyin}
-                            </p>
-
-                            <p className="text-[10px] text-gray-500 truncate">
-                                {card.expected_answer}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+<div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-8 gap-4">
+    {flashCardReviewBatchProps.map((card) => (
+        <MainCard
+            key={card.hanzi}
+            item={{
+                word: {
+                    simplified: card.hanzi,
+                    pinyin: card.pinyin,
+                    meanings: [
+                        {
+                            id: 1,
+                            meaning: card.expected_answer,
+                        },
+                    ],
+                    hskLevel: card.hskLevel ?? "-",
+                },
+                correctReviews: 0,
+                totalReviews: 0,
+            }}
+        />
+    ))}
+</div>
             </div>
 
             <div className="pt-4 items-end flex flex-row sm:justify-center justify-end">

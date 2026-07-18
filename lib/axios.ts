@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const api = axios.create({
-    // baseURL : process.env.PUBLIC_API_URL || "http://localhost:5000/",
-    baseURL : process.env.PUBLIC_API_URL || "http://103.93.134.144:5000",
+    baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/",
+    //baseURL : process.env.PUBLIC_API_URL || "http://103.93.134.144:5000",
     withCredentials : true,
 })
 
@@ -12,6 +12,7 @@ api.interceptors.request.use(
 
         const token = localStorage.getItem("token")
         console.log("TOKEN =", token);
+        console.log(process.env.NEXT_PUBLIC_API_URL);
 
         if(token){
             config.headers.Authorization = `Bearer ${token}`;

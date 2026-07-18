@@ -40,7 +40,7 @@ export default function FlashCardLearningQuestionPage({
 
     const [state, setState] =
         useState<"preview" | "question" | "answer" | "loading" |  "done">(
-            "preview"
+            "question"
         );
 
     const [isDone, setIsDone] =
@@ -144,7 +144,7 @@ export default function FlashCardLearningQuestionPage({
 
         setShowAnswer(false);
 
-        setState("preview");
+        setState("question");
 
     };
 
