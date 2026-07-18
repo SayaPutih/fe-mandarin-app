@@ -16,6 +16,10 @@ const FlashCardOptions =({
 } : Props)=> {
 
     const getColor = (option: string) => {
+
+        if(option == correctOption)
+            return "bg-green-300 text-green-900";
+
         if (!selectedAnswer)
             return "bg-gray-300";
 

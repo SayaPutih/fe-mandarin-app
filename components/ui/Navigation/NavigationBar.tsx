@@ -35,13 +35,12 @@ export const NavigationBar = ({
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        router.replace("/login");
+        router.replace("/auth/login");
     };
 
     return (
         <nav className="h-full px-2 md:px-3 flex items-center justify-between bg-white">
-
-            {/* Left */}
+ 
             <div className="flex items-center gap-3">
 
                 {isMobile && isRoleTeacher && (

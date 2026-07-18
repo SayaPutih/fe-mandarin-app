@@ -76,7 +76,7 @@ export default function InvalidModal() {
         </div>
 
         <Link
-          href="/flashcard"
+          href="/student/flashcard"
           className="
             mt-8
             inline-flex

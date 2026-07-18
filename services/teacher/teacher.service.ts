@@ -1,9 +1,5 @@
 import { api } from "@/lib/axios";
 
-// =========================
-// DASHBOARD
-// =========================
-
 export const getTeacherDashboard = async () => {
   try {
     const response = await api.get("/teacher/dashboard");
@@ -12,10 +8,6 @@ export const getTeacherDashboard = async () => {
     return null;
   }
 };
-
-// =========================
-// VOCABULARY
-// =========================
 
 export const getAllVocabulary = async (
   page = 1,
@@ -78,9 +70,6 @@ export const getVocabularyById = async (
     return null;
   }
 };
-// =========================
-// STUDENTS
-// =========================
 
 export const getAllStudents = async () => {
   try {
@@ -101,10 +90,6 @@ export const getStudentById = async (id: string) => {
   }
 };
 
-// =========================
-// RETENTION
-// =========================
-
 export const getStudentRetention = async (id: string) => {
   try {
     const response = await api.get(
@@ -115,10 +100,6 @@ export const getStudentRetention = async (id: string) => {
     return null;
   }
 };
-
-// =========================
-// MASTERED WORDS
-// =========================
 
 export const getStudentMasteredWords = async (
   id: string
@@ -134,10 +115,6 @@ export const getStudentMasteredWords = async (
   }
 };
 
-// =========================
-// FORGOTTEN WORDS
-// =========================
-
 export const getStudentForgottenWords = async (
   id: string
 ) => {
@@ -152,9 +129,6 @@ export const getStudentForgottenWords = async (
   }
 };
 
-// =========================
-// REVIEW SCHEDULE
-// =========================
 
 export const getStudentReviewSchedule = async (
   id: string
@@ -169,10 +143,6 @@ export const getStudentReviewSchedule = async (
     return null;
   }
 };
-
-// =========================
-// ANALYTICS
-// =========================
 
 export const getRetentionAnalytics = async () => {
   try {
@@ -209,10 +179,6 @@ export const getHSKDistribution = async () => {
     return null;
   }
 };
-
-// =========================
-// AUTH CHECK
-// =========================
 
 export const confirmTeacher = async () => {
   try {

@@ -6,33 +6,39 @@ import {
   RotateCcw,
   SquareCheck,
   NotebookPen,
+  School
 } from "lucide-react";
 
 const CategorySection = () => {
   const categories = [
     {
+      label: "Class",
+      href: "/student/class",
+      icon: School,
+    },
+    {
       label: "Flashcard",
-      href: "/flashcard",
+      href: "/student/flashcard",
       icon: BookOpen,
     },
     {
       label : "Schedule",
-      href : "/schedule",
+      href : "/student/schedule",
       icon : NotebookPen,
     },
     {
       label: "Words",
-      href: "/words",
+      href: "/student/words",
       icon: Languages,
     },
     {
       label : "Recommeded Words",
-      href : "/recommended",
+      href : "/student/recommended",
       icon : SquareCheck,
     },
     {
       label: "Review",
-      href: "/review",
+      href: "/student/review",
       icon: RotateCcw,
     },
   ];

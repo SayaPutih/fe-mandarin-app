@@ -1,3 +1,4 @@
+//EE
 interface Props{
     label : string;
     onClick : ()=>void

@@ -93,7 +93,7 @@ export default function LoginForm(){
                     <span>No Account?</span>
 
                     <Link
-                        href="/register"
+                        href="/auth/register"
                         className="font-medium text-blue-600 hover:underline"
                     >
                         Sign Up
@@ -105,8 +105,7 @@ export default function LoginForm(){
                 <ErrorModal
                     msg={error}
                     onClick={() => {
-                        setError("");
-                        //setIsError(false);
+                        setError(""); 
                     }}
                 />
             )}

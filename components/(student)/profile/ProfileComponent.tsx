@@ -25,7 +25,7 @@ const ProfileComponent =()=>{
     },[])
 
     return (
-        <section className="w-80 shrink-0">
+        <section className="sm:w-80 sm:flex-none flex-1 shrink-0">
 
             <div
                 className="

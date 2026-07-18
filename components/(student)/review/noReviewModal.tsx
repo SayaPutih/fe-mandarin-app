@@ -14,7 +14,7 @@ const NoReviewModal =()=>{
         
             <ButtonPrimary
                 label="Back To Home"
-                onClick={()=>(window.location.href="/home")}
+                onClick={()=>(window.location.href="/student/home")}
             />
         </div>
     )

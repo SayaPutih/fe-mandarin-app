@@ -7,6 +7,22 @@ import { flashCard } from "@/types/flash-card.type";
 //     return response.data;
 // }
 
+export const GetFlashCardAssignmentQuestions = async (wordIds:string[]) => {
+
+  console.log("--question assignment--")
+  console.log(wordIds)
+  console.log("before axios", wordIds);
+
+  const response = await api.post(
+    "/flash-card/assignment",{
+      wordIds
+    }
+  );
+
+  return response.data;
+
+};
+
 export const GetFlashCardQuestions = async (
   hskLevel: number
 ) => {

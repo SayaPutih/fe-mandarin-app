@@ -27,7 +27,13 @@ export const LoadingBar =({
     )
 }
 
-export function LoadingSpinner() {
+interface SpinnerProps{
+  label? : string;
+}
+
+export function LoadingSpinner({
+  label
+} : SpinnerProps) {
   return (
     <div className="flex min-h-[calc(110vh-200px)] flex-col items-center justify-center gap-4">
       <div className="flex gap-2">
@@ -43,7 +49,7 @@ export function LoadingSpinner() {
       </div>
 
       <p className="text-sm text-gray-500">
-        Loading...
+        {label ? label : "Loading..."}
       </p>
     </div>
   );

@@ -4,6 +4,14 @@ export const TEACHER_ROUTES = [
         href: "/teacher/dashboard",
     },
     {
+        label: "Class",
+        href: "/teacher/class",
+    },
+    {
+        label: "Analytics",
+        href: "/teacher/analytics",
+    },
+    {
         label: "Students",
         href: "/teacher/students",
     },

@@ -43,9 +43,8 @@ export default function RegisterForm(){
                 email,
                 password
             })
-
-            // console.log(res.token)
-            router.push("/login");
+ 
+            router.push("/auth/login");
         }catch(err : any){
             setError(err.message);
         }
@@ -101,7 +100,7 @@ export default function RegisterForm(){
                     <span>Have an Account?</span>
                 
                     <Link
-                        href="/login"
+                        href="/auth/login"
                         className="font-medium text-blue-600 hover:underline"
                     >
                         Login
@@ -114,8 +113,7 @@ export default function RegisterForm(){
                 <ErrorModal
                     msg={error}
                     onClick={() => {
-                        setError("");
-                        //setIsError(false);
+                        setError(""); 
                     }}
                 />
             )}

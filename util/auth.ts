@@ -75,7 +75,7 @@ export function redirectByRole(router: any) {
             break;
 
         default:
-            router.replace("/home");
+            router.replace("/student/home");
             break;
     }
 }

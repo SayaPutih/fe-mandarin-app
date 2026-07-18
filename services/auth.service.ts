@@ -28,7 +28,7 @@ export const getUserProfile = async()=>{
 
 export const getAllUsers = async (
   page = 1,
-  limit = 10
+  limit = 5
 ) => {
   const response = await api.get(
     `/admin/get-all?page=${page}&limit=${limit}`

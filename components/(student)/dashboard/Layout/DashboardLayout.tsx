@@ -21,17 +21,15 @@ export default function DashboardLayout({
     const[hasNotification,setHasNotification] = useState(true);
     const[notificationContent,setNotificationContent] = useState<Notification | null>(null);
     const[reviewNotification,setReviewNotification] = useState(false);
-    //const[loginExpired,setLoginExpired] = useState(false);
     
     const router = useRouter();
-    //const router = useRouter();
 
     useEffect(()=>{
         const token = getToken();
         if(!token){
-            console.log("Token Expired")
+            console.log("Token Expired Redirecting")
             
-            router.replace("login")
+            router.replace("/auth/login")
         }
     },[router]);
 
@@ -44,7 +42,7 @@ export default function DashboardLayout({
 
         setReviewNotification(false);
 
-        router.push("/review");
+        router.push("/student/review");
     };
 
     const fetchNotification = async ()=>{

@@ -67,8 +67,7 @@ export default function FlashCardReviewPage() {
                 </div>
             ) : state === "preview" ? (
                 <FlashCardReviewPreview flashCardReviewBatchProps={flashCardReviewBatch} onClick={goToQuestion}/>
-            ) : state === "question" ? (
-                // <FlashCardReviewQuestion flashCardReviewBatchProps={flashCardReviewBatch} onClick={()=>setState("noReview")} />
+            ) : state === "question" ? ( 
                 <FlashCardLearningQuestionPage flashCardLearningBatchProps={flashCardReviewBatch} onClick={()=>setState("noReview")} />
             ) : state === "noReview" ? (
                 <NoReviewModal />
