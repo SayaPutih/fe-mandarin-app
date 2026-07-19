@@ -1,6 +1,7 @@
 "use client";
 
 import { useRemoveStudentFromClass } from "@/hooks/useTeacherStudentClass";
+import TeacherButton from "@/components/ui/TeacherButton";
 
 interface Props {
   open: boolean;
@@ -60,22 +61,24 @@ export default function DeleteStudentModal({
         </p>
 
         <div className="mt-6 flex justify-end gap-3">
-          <button
-            onClick={onClose}
-            className="rounded-lg border px-4 py-2"
-          >
-            Cancel
-          </button>
 
-          <button
-            disabled={loading}
-            onClick={handleDelete}
-            className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:opacity-50"
-          >
-            {loading
+          <TeacherButton
+            label="Cancel"
+            variant="blue"
+            style="py-2"
+            onClick={onClose}
+          />
+
+          <TeacherButton
+            label={loading
               ? "Removing..."
               : "Remove"}
-          </button>
+            variant="red"
+            style="py-2 disabled:opacity-50"
+            disabled={loading}
+            onClick={handleDelete}    
+          />
+
         </div>
       </div>
     </div>

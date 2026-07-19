@@ -1,17 +1,26 @@
+//EE 2
 "use client";
 
 import { useState } from "react";
-
+import TeacherButton from "@/components/ui/TeacherButton";
 import CreateTeacherClassModal from "./CreateTeacherClassModal";
 import EmptyClass from "./EmptyClass";
 import ClassTable from "./ClassTable";
-
+import DeleteClassModal from "./DeleteClassModal";
 import {
     useCreateTeacherClass,
     useGetTeacherClass,
 } from "@/hooks/useTeacherClass";
 
 export default function ClassPage() {
+    const {
+        classes,
+        refresh,
+        deleteClassId,
+        setDeleteClassId,
+        confirmDelete,
+    } = useGetTeacherClass();
+
     const [openCreateModal, setOpenCreateModal] =
         useState(false);
 
@@ -20,13 +29,8 @@ export default function ClassPage() {
         handleCreateClass,
     } = useCreateTeacherClass();
 
-    const {
-        classes,
-        refresh,
-    } = useGetTeacherClass();
-
     return (
-        <div className="p-8">
+        <div className="p-8 bg-white rounded-xl">
 
             <div className="mb-8 flex items-center justify-between">
 
@@ -34,20 +38,18 @@ export default function ClassPage() {
                     <h1 className="text-3xl font-bold">
                         Classes
                     </h1>
-
                     <p className="text-gray-500">
                         Manage your classes
                     </p>
                 </div>
 
-                <button
+                <TeacherButton
+                    label="+ Create Class"
+                    variant="green"
                     onClick={() =>
                         setOpenCreateModal(true)
                     }
-                    className="rounded-lg bg-blue-600 px-5 py-2 text-white"
-                >
-                    + Create Class
-                </button>
+                />
 
             </div>
 
@@ -58,7 +60,10 @@ export default function ClassPage() {
                     }
                 />
             ) : (
-                <ClassTable classes={classes} />
+                <ClassTable
+                    classes={classes}
+                    onDelete={setDeleteClassId}
+                />
             )}
 
             <CreateTeacherClassModal
@@ -71,6 +76,12 @@ export default function ClassPage() {
                     await handleCreateClass(data);
                     refresh();
                 }}
+            />
+
+            <DeleteClassModal
+                open={!!deleteClassId}
+                onClose={() => setDeleteClassId(null)}
+                onDelete={confirmDelete}
             />
 
         </div>

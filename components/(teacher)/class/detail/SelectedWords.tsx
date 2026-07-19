@@ -1,12 +1,10 @@
 "use client";
 
-import type {
-  MandarinWord,
-} from "@/types/teacher";
+import TeacherButton from "@/components/ui/TeacherButton";
+import type {MandarinWord,} from "@/types/teacher";
 
 interface Props {
   words: MandarinWord[];
-
   onRemove: (
     id: string
   ) => void;
@@ -25,7 +23,7 @@ export default function SelectedWords({
 
   return (
 
-    <div className="rounded-xl border bg-white p-5">
+    <div className="rounded-xl border border-zinc-200 bg-white p-5">
 
       <div className="mb-4 flex items-center justify-between">
 
@@ -40,47 +38,38 @@ export default function SelectedWords({
       </div>
 
       <div className="flex flex-wrap gap-3">
-
         {words.map((word) => (
-
           <div
             key={word.id}
             className="flex items-center gap-3 rounded-lg bg-blue-50 px-4 py-3"
           >
-
             <div>
-
               <p className="font-medium">
                 {word.simplified}
               </p>
-
               <p className="text-xs text-gray-500">
                 {word.pinyin}
               </p>
-
               <p className="text-xs text-gray-500">
-
                 {word.meanings
                   ?.map(
                     (m) =>
                       m.meaning
                   )
                   .join(", ")}
-
               </p>
-
             </div>
 
-            <button
+            <TeacherButton
+              label="✕"
               onClick={() =>
                 onRemove(
                   word.id
                 )
               }
-              className="rounded-md bg-red-500 px-2 py-1 text-xs text-white transition hover:bg-red-600"
-            >
-              ✕
-            </button>
+              variant="red"
+              style="px-2 py-1 text-xs"
+            />
 
           </div>
 

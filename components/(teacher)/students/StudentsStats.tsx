@@ -1,4 +1,5 @@
-import StatCard from "@/components/(teacher)/common/StatCard";
+//EE 4
+import StatCard from "@/components/ui/common/StatCard";
 
 import type { Student } from "@/types/teacher";
 

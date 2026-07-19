@@ -3,7 +3,8 @@
 import StudentCard from "./StudentCard";
 import EmptyStudents from "./EmptyStudents";
 import StudentsHeader from "./StudentsHeader";
-import StudentsLoading from "./StudentsLoading";
+import { LoadingSpinner } from "@/components/ui/Loading";
+// import StudentsLoading from "./StudentsLoading";
 import StudentsStats from "./StudentsStats";
 import StudentSearch from "./StudentSearch";
 
@@ -19,16 +20,13 @@ export default function StudentsPage() {
   } = useStudents();
 
   if (loading) {
-    return <StudentsLoading />;
+    return <LoadingSpinner label="Loading Students" />;
   }
 
   return (
     <div className="min-h-screen rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100 p-4">
       <StudentsHeader />
-
-      <StudentsStats
-        students={students}
-      />
+      <StudentsStats students={students}/>
 
       <StudentSearch
         search={search}

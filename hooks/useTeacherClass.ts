@@ -1,42 +1,56 @@
 "use client";
 
-import {useEffect,useState} from "react";
-import { createTeacherClass,getTeacherClass  } from "@/services/teacher/teacherClass.service";
-import { CreateTeacherClassRequest,TeacherClass } from "@/types/class";
+import { useEffect, useState } from "react";
 
-export function useCreateTeacherClass(){
-    const [loading,setLoading] = useState(false);
-    const handleCreateClass = async(data : CreateTeacherClassRequest)=>{
-        console.log(" -- useTeacherClass Hook -- ");
-        try{
+import {
+  createTeacherClass,
+  getTeacherClass,
+  deleteClass,
+} from "@/services/teacher/teacherClass.service";
 
-            setLoading(true);
-             await createTeacherClass(data);
+import {
+  CreateTeacherClassRequest,
+  TeacherClass,
+} from "@/types/class";
 
-        }catch(err){
-            console.log(" -- useTeacherClass Hook Error -- ");
-            console.log(err);
-        }finally{
-            setLoading(false);
-        }
+export function useCreateTeacherClass() {
+  const [loading, setLoading] = useState(false);
+
+  const handleCreateClass = async (
+    data: CreateTeacherClassRequest
+  ) => {
+    try {
+      setLoading(true);
+
+      await createTeacherClass(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    return {
-        loading,
-        handleCreateClass
-    }
+  return {
+    loading,
+    handleCreateClass,
+  };
 }
-
 
 export function useGetTeacherClass(
   initialPage = 1,
   initialLimit = 10
 ) {
   const [loading, setLoading] = useState(true);
+
   const [classes, setClasses] = useState<TeacherClass[]>([]);
+
   const [page, setPage] = useState(initialPage);
+
   const [limit] = useState(initialLimit);
+
   const [totalPages, setTotalPages] = useState(1);
+
+  const [deleteClassId, setDeleteClassId] = useState<string | null>(null);
 
   const fetchData = async (
     currentPage = page
@@ -50,10 +64,11 @@ export function useGetTeacherClass(
       );
 
       setClasses(res.data.result.classes);
-      setTotalPages(res.data.result.pagination.totalPages);
 
+      setTotalPages(
+        res.data.result.pagination.totalPages
+      );
     } catch (err) {
-      console.log("-- useGetTeacherClass --");
       console.log(err);
     } finally {
       setLoading(false);
@@ -64,12 +79,45 @@ export function useGetTeacherClass(
     fetchData(page);
   }, [page]);
 
+  const confirmDelete = async () => {
+    if (!deleteClassId) return;
+
+    try {
+      setLoading(true);
+
+      await deleteClass(deleteClassId);
+
+      if (classes.length === 1 && page > 1) {
+        setPage((prev) => prev - 1);
+      } else {
+        await fetchData();
+      }
+
+      setDeleteClassId(null);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
+
     classes,
+
     page,
+
     totalPages,
+
     setPage,
+
     refresh: fetchData,
+
+    deleteClassId,
+
+    setDeleteClassId,
+
+    confirmDelete,
   };
 }

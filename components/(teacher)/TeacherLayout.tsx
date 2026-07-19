@@ -34,7 +34,7 @@ export default function DashboardLayout({
         const user = getUser();
 
         if (!user) {
-            router.replace("/login");
+            router.replace("/auth/login");
             return;
         }
 

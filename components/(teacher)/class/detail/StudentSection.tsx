@@ -6,6 +6,8 @@ import { useGetStudentsByClass } from "@/hooks/useTeacherStudentClass";
 
 import StudentTable from "./StudentTable";
 import AddStudentModal from "./AddStudentModal";
+import TeacherButton from "@/components/ui/TeacherButton";
+import { Plus } from "lucide-react";
 
 interface Props {
   classId: string;
@@ -24,7 +26,7 @@ export default function StudentSection({
 
   return (
     <>
-      <div className="rounded-xl border bg-white p-5">
+      <div className="rounded-xl border bg-white p-5 border-zinc-200">
 
         <div className="mb-5 flex items-center justify-between">
 
@@ -38,13 +40,12 @@ export default function StudentSection({
             </p>
           </div>
 
-          <button
+          <TeacherButton
+            icon={<Plus width={16}/>}
             onClick={() => setIsOpen(true)}
-            className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          >
-            Add Student
-          </button>
-
+            variant="green"
+            style="py-2"
+          />
         </div>
 
         <StudentTable

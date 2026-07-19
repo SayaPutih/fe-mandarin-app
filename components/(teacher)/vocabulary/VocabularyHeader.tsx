@@ -1,4 +1,5 @@
 //EE
+
 import TeacherButton from "@/components/ui/TeacherButton";
 
 interface VocabularyHeaderProps {

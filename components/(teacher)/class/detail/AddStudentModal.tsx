@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 
-//import { useStudents } from "@/hooks/useStudents";
-import { useAddStudentToClass } from "@/hooks/useTeacherStudentClass";
-import { useAvailableStudents } from "@/hooks/useTeacherStudentClass";
+import { FormField } from "@/components/ui/form/FormField";
+import TeacherButton from "@/components/ui/TeacherButton";
+
+import {
+  useAddStudentToClass,
+  useAvailableStudents,
+} from "@/hooks/useTeacherStudentClass";
 
 interface Props {
   open: boolean;
@@ -19,7 +23,6 @@ export default function AddStudentModal({
   classId,
   refresh,
 }: Props) {
-
   const {
     loading,
     filteredStudents,
@@ -43,7 +46,6 @@ export default function AddStudentModal({
   if (!open) return null;
 
   const toggleStudent = (studentId: string) => {
-
     setSelectedStudents((prev) => {
 
       if (prev.includes(studentId)) {
@@ -53,13 +55,10 @@ export default function AddStudentModal({
       }
 
       return [...prev, studentId];
-
     });
-
   };
 
   const onConfirm = async () => {
-
     if (selectedStudents.length === 0) return;
 
     await handleAddStudent(
@@ -74,122 +73,156 @@ export default function AddStudentModal({
     setSelectedStudents([]);
 
     onClose();
-
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
+      <div className="flex min-h-screen items-center justify-center p-4">
 
-      <div className="sm:w-1/2 w-full rounded-xl bg-white p-6">
+        <div className="w-full max-w-2xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-2xl">
 
-        <h2 className="mb-5 text-xl font-semibold">
-          Add Students
-        </h2>
+          <div className="mb-6 flex items-start justify-between">
 
-        <input
-          className="mb-5 w-full rounded-lg border p-3"
-          placeholder="Search Student..."
-          value={search}
-          onChange={(e) =>
-            setSearch(e.target.value)
-          }
-        />
+            <div>
 
-        <div className="max-h-[350px] space-y-2 overflow-y-auto">
+              <h2 className="text-2xl font-bold">
+                Add Students
+              </h2>
 
-          {loading ? (
+              <p className="mt-1 text-sm text-zinc-500">
+                Select students to add into this class.
+              </p>
 
-            <p>Loading...</p>
+            </div>
 
-          ) : (
+            <div className="rounded-full bg-zinc-100 px-4 py-2 text-xs font-semibold">
+              {selectedStudents.length} Selected
+            </div>
 
-            filteredStudents.map((student) => {
+          </div>
 
-              const selected =
-                selectedStudents.includes(student.id);
+          <FormField
+            value={search}
+            placeholder="Search student..."
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
+          />
 
-              return (
+          <div className="mt-5 max-h-[350px] space-y-3 overflow-y-auto">
 
-                <div
-                  key={student.id}
-                  className={`flex items-center justify-between rounded-lg border p-3 transition
-                    ${
-                      selected
-                        ? "bg-gray-100"
-                        : "bg-white"
-                    }`}
-                >
+            {loading ? (
 
-                  <div>
+              <div className="py-8 text-center text-zinc-500">
+                Loading students...
+              </div>
 
-                    <p className="font-medium">
-                      {student.name}
-                    </p>
+            ) : filteredStudents.length === 0 ? (
 
-                    <p className="text-sm text-gray-500">
-                      {student.email}
-                    </p>
+              <div className="py-8 text-center text-zinc-500">
+                No students Available.
+              </div>
+
+            ) : (
+
+              filteredStudents.map((student) => {
+
+                const selected =
+                  selectedStudents.includes(
+                    student.id
+                  );
+
+                return (
+
+                  <div
+                    key={student.id}
+                    className={`
+                      flex
+                      items-center
+                      justify-between
+                      rounded-xl
+                      border
+                      border-zinc-200
+                      p-4
+                      transition
+
+                      ${
+                        selected
+                          ? "bg-zinc-100"
+                          : "hover:bg-zinc-50"
+                      }
+                    `}
+                  >
+
+                    <div>
+
+                      <p className="font-medium">
+                        {student.name}
+                      </p>
+
+                      <p className="text-sm text-zinc-500">
+                        {student.email}
+                      </p>
+
+                    </div>
+
+                    <TeacherButton
+                      label={
+                        selected
+                          ? "Selected"
+                          : "Add"
+                      }
+                      variant={
+                        selected
+                          ? "gray"
+                          : "green"
+                      }
+                      onClick={() =>
+                        toggleStudent(student.id)
+                      }
+                    />
 
                   </div>
 
-                  <button
-                    onClick={() =>
-                      toggleStudent(student.id)
-                    }
-                    className={`rounded-lg px-4 py-2 text-white
-                      ${
-                        selected
-                          ? "bg-gray-500"
-                          : "bg-blue-500"
-                      }`}
-                  >
-                    {selected
-                      ? "Selected"
-                      : "Add"}
-                  </button>
+                );
 
-                </div>
+              })
 
-              );
+            )}
 
-            })
+          </div>
 
-          )}
+          <div className="mt-6 flex items-center justify-between">
 
-        </div>
+            <span className="text-sm text-zinc-500">
+              {selectedStudents.length} student selected
+            </span>
 
-        <div className="mt-6 flex justify-between items-center">
+            <div className="flex gap-3">
 
-          <span className="text-sm text-gray-500">
-            {selectedStudents.length} student selected
-          </span>
+              <TeacherButton
+                label="Cancel"
+                variant="red"
+                onClick={onClose}
+              />
 
-          <div className="flex gap-3">
+              <TeacherButton
+                label={`Add Students (${selectedStudents.length})`}
+                variant="green"
+                disabled={
+                  adding ||
+                  selectedStudents.length === 0
+                }
+                onClick={onConfirm}
+              />
 
-            <button
-              onClick={onClose}
-              className="rounded-lg border px-4 py-2"
-            >
-              Cancel
-            </button>
-
-            <button
-              disabled={
-                adding ||
-                selectedStudents.length === 0
-              }
-              onClick={onConfirm}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
-            >
-              Add Students ({selectedStudents.length})
-            </button>
+            </div>
 
           </div>
 
         </div>
 
       </div>
-
     </div>
   );
 }

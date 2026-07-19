@@ -1,6 +1,6 @@
 import type { TeacherDashboard } from "@/types/teacher";
 
-import StatCard from "@/components/(teacher)/common/StatCard";
+import StatCard from "@/components/ui/common/StatCard";
 
 interface DashboardStatsProps {
   dashboard: TeacherDashboard;

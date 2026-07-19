@@ -1,14 +1,12 @@
 "use client";
 
 import VocabularyHeader from "./VocabularyHeader";
-import VocabularyLoading from "./VocabularyLoading";
 import VocabularySearch from "./VocabularySearch";
 import VocabularyStats from "./VocabularyStats";
 import VocabularyTable from "./VocabularyTable";
 import Pagination from "@/components/ui/Pagination";
 import CreateVocabularyModal from "./CreateVocabularyModal";
 import { LoadingSpinner } from "@/components/ui/Loading";
-
 import { useVocabulary } from "@/hooks/useVocabulary";
 
 export default function VocabularyPage() {
@@ -27,6 +25,7 @@ export default function VocabularyPage() {
     handleCreate,
   } = useVocabulary();
 
+
   if (loading) {
     return (
       <LoadingSpinner label="loading" />
@@ -34,12 +33,14 @@ export default function VocabularyPage() {
   }
 
   return (
-    <div className="min-h-screen rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100 p-8">
+    <div className="min-h-screen rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100 p-4">
 
-      <VocabularyHeader onAdd={() =>setShowModal(true)}/>
-      <VocabularyStats words={words}/>
+      <div className="p-4">
+        <VocabularyHeader onAdd={() =>setShowModal(true)}/>
+        <VocabularyStats/>
+      </div>
 
-      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+      <div className="rounded-2xl rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
 
         <div className="overflow-x-auto rounded-xl bg-white sm:p-2">
 

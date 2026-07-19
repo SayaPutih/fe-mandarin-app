@@ -17,3 +17,14 @@ export const getTeacherClass = async(
     console.log(res)
     return res;
 }
+
+
+export const deleteClass = async (
+  id: string
+) => {
+  const response = await api.delete(
+    `/teacher/class/${id}`
+  );
+
+  return response.data;
+};

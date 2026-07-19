@@ -1,3 +1,4 @@
+//EE 2
 interface Props {
   search: string;
 
@@ -15,7 +16,7 @@ export default function VocabularySearch({
 }: Props) {
   return (
     <div className="mb-5 flex items-center justify-between gap-4">
-      <div className="relative w-3/4 rounded-md border border-black">
+      <div className="relative w-full rounded-md ">
         <input
           type="text"
           placeholder="Search Hanzi or Pinyin..."
@@ -57,9 +58,9 @@ export default function VocabularySearch({
         </svg>
       </div>
 
-      <div className="rounded-xl bg-zinc-100 px-4 py-3 text-sm font-medium text-zinc-600">
+      {/* <div className="rounded-xl bg-zinc-100 px-4 py-3 text-sm font-medium text-zinc-600">
         {total} Results
-      </div>
+      </div> */}
     </div>
   );
 }

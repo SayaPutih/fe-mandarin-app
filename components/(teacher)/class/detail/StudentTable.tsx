@@ -1,8 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
 
 import DeleteStudentModal from "./DeleteStudentModal";
+
+import TeacherButton from "@/components/ui/TeacherButton";
+import {
+  TableContainer,
+  TableHeader,
+  TableCell,
+} from "@/components/ui/Table";
 
 interface Props {
   loading: boolean;
@@ -24,80 +32,103 @@ export default function StudentTable({
 
   if (loading) {
     return (
-      <div className="py-12 text-center text-gray-500">
+      <div className="rounded-xl border border-zinc-200 bg-white py-12 text-center text-zinc-500">
         Loading students...
-      </div>
-    );
-  }
-
-  if (students.length === 0) {
-    return (
-      <div className="py-12 text-center text-gray-500">
-        No students found.
       </div>
     );
   }
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
-        <table className="w-full">
-          <thead className="bg-gray-100">
-            <tr className="text-left text-sm text-gray-700">
-              <th className="px-6 py-4">
+      <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
+
+        <TableContainer>
+
+          <thead className="border-b border-zinc-200 bg-zinc-100">
+
+            <tr>
+
+              <TableHeader className="text-center">
                 Student Name
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4">
+              <TableHeader className="text-center">
                 Email
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4">
+              <TableHeader className="text-center">
                 Joined
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4 text-center">
+              <TableHeader className="text-center">
                 Actions
-              </th>
+              </TableHeader>
+
             </tr>
+
           </thead>
 
           <tbody>
-            {students.map((item: any) => (
+
+            {students.length === 0 && (
+              <tr>
+
+                <TableCell
+                  colSpan={4}
+                  className="py-10 text-center text-zinc-500"
+                >
+                  No students found.
+                </TableCell>
+
+              </tr>
+            )}
+
+            {students.map((item) => (
+
               <tr
                 key={item.id}
-                className="border-t hover:bg-gray-50"
+                className="border-t border-black/5 transition-colors hover:bg-zinc-50"
               >
-                <td className="px-6 py-4 font-medium">
+
+                <TableCell className="font-medium text-center">
                   {item.student.name}
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4 text-gray-600">
+                <TableCell className="text-zinc-600 text-center">
                   {item.student.email}
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4 text-gray-500">
+                <TableCell className="text-zinc-500 text-center">
                   {new Date(
                     item.joinedAt
                   ).toLocaleDateString()}
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4">
-                  <div className="flex justify-center gap-2"> 
-                    <button
+                <TableCell>
+
+                  <div className="flex justify-center">
+
+                    <TeacherButton
+                      label="Remove"
+                      icon={<Trash2 size={16} />}
+                      variant="red"
                       onClick={() =>
                         setSelectedStudent(item)
                       }
-                      className="rounded-lg bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600"
-                    >
-                      Remove
-                    </button>
+                    />
+
                   </div>
-                </td>
+
+                </TableCell>
+
               </tr>
+
             ))}
+
           </tbody>
-        </table>
+
+        </TableContainer>
+
       </div>
 
       <DeleteStudentModal

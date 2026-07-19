@@ -1,13 +1,15 @@
+//EE 4
 "use client";
 
 import { useParams } from "next/navigation";
 
 import { useStudentDetail } from "@/hooks/useStudentDetail";
 
-import StudentDetailLoading from "./StudentDetailLoading";
+//import StudentDetailLoading from "./StudentDetailLoading";
 import StudentHeader from "./StudentHeader";
 import StudentOverview from "./StudentOverview";
 import LearningPerformance from "./LearningPerformance";
+import { LoadingSpinner } from "@/components/ui/Loading";
 import VocabularyStats from "./VocabularyStats";
 import VocabularyList from "./VocabularyList";
 import ReviewScheduleTable from "./ReviewScheduleTable";
@@ -27,7 +29,7 @@ export default function StudentDetailPage() {
   } = useStudentDetail(id);
 
   if (loading || !student) {
-    return <StudentDetailLoading />;
+    return <LoadingSpinner label="Loading Student Details..." />;
   }
 
   return (
@@ -63,7 +65,7 @@ export default function StudentDetailPage() {
         }
       />
 
-      <div
+      {/* <div
         className="
           mb-4
           grid
@@ -84,7 +86,7 @@ export default function StudentDetailPage() {
           color="red"
           emptyText="No at-risk vocabulary"
         />
-      </div>
+      </div> */}
 
       <ReviewScheduleTable
         reviewSchedule={

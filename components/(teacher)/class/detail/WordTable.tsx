@@ -1,32 +1,27 @@
+//EE 2
 "use client";
 
-import type {
-  MandarinWord,
-} from "@/types/teacher";
+import type { MandarinWord } from "@/types/teacher";
 import { useRef } from "react";
+
+import Pagination from "@/components/ui/Pagination";
+import {
+  TableCell,
+  TableContainer,
+  TableHeader,
+} from "@/components/ui/Table";
+import TeacherButton from "@/components/ui/TeacherButton";
+import { LoadingSpinner } from "@/components/ui/Loading";
 
 interface Props {
   loading: boolean;
-
   words: MandarinWord[];
-
   selectedWords: MandarinWord[];
-
   page: number;
-
   totalPages: number;
-
-  onPageChange: (
-    page: number
-  ) => void;
-
-  onAdd: (
-    word: MandarinWord
-  ) => void;
-
-  onRemove: (
-    id: string
-  ) => void;
+  onPageChange: (page: number) => void;
+  onAdd: (word: MandarinWord) => void;
+  onRemove: (id: string) => void;
 }
 
 export default function WordTable({
@@ -42,9 +37,7 @@ export default function WordTable({
 
   const tableRef = useRef<HTMLDivElement>(null);
   const handlePageChange = (newPage: number) => {
-
     onPageChange(newPage);
-
     requestAnimationFrame(() => {
       tableRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -55,50 +48,22 @@ export default function WordTable({
   };
 
   if (loading) {
-
     return (
-
-      <div className="rounded-xl border bg-white p-10 text-center text-gray-500">
-        Loading words...
-      </div>
-
+      <LoadingSpinner label="Loading Words..."/>
     );
-
   }
 
   return (
+    <div ref={tableRef} className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
 
-    <div
-      ref={tableRef}
-      className="overflow-hidden rounded-xl border bg-white"
-    >
-
-      <table className="w-full">
-
-        <thead className="bg-gray-100">
-
+      <TableContainer>
+        <thead className="border-b border-zinc-200 bg-zinc-100">
           <tr>
-
-            <th className="px-4 py-3 text-left">
-              Hanzi
-            </th>
-
-            <th className="px-4 py-3 text-left">
-              Pinyin
-            </th>
-
-            <th className="px-4 py-3 text-left">
-              Meaning
-            </th>
-
-            <th className="px-4 py-3 text-center">
-              HSK
-            </th>
-
-            <th className="px-4 py-3 text-center">
-              Action
-            </th>
-
+            <TableHeader className="text-center">Hanzi</TableHeader>
+            <TableHeader className="text-center">Pinyin</TableHeader>
+            <TableHeader className="text-center">Meaning</TableHeader>
+            <TableHeader className="text-center">HSK</TableHeader>
+            <TableHeader className="text-center">Action</TableHeader>
           </tr>
 
         </thead>
@@ -106,86 +71,63 @@ export default function WordTable({
         <tbody>
 
           {words.length === 0 && (
-
             <tr>
-
-              <td
+              <TableCell
                 colSpan={5}
-                className="p-10 text-center text-gray-500"
+                className="py-10 text-center text-zinc-500"
               >
                 No words found.
-              </td>
-
+              </TableCell>
             </tr>
-
           )}
 
           {words.map((word) => {
-
-            const selected =
-              selectedWords.some(
-                (item) =>
-                  item.id === word.id
-              );
-
+            const selected = selectedWords.some((item) => item.id === word.id);
             return (
-
               <tr
                 key={word.id}
                 className={`
-                  border-t transition
-
+                  border-t
+                  border-zinc-200
+                  transition-colors
                   ${
                     selected
                       ? "bg-blue-50"
-                      : "hover:bg-gray-50"
+                      : "hover:bg-zinc-50"
                   }
                 `}
               >
 
-                <td className="px-4 py-4 font-medium">
+                <TableCell className="font-medium text-center">
                   {word.simplified}
-                </td>
+                </TableCell>
 
-                <td className="px-4 py-4">
+                <TableCell className="text-center">
                   {word.pinyin}
-                </td>
+                </TableCell>
 
-                <td className="px-4 py-4">
+                <TableCell className="text-center">
                   {word.meanings?.[0]?.meaning ?? "-"}
-                </td>
+                </TableCell>
 
-                <td className="px-4 py-4 text-center">
+                <TableCell className="text-center">
                   HSK {word.hskLevel}
-                </td>
+                </TableCell>
 
-                <td className="px-4 py-4 text-center">
-
+                <TableCell className="text-center">
                   {selected ? (
-
-                    <button
-                      onClick={() =>
-                        onRemove(word.id)
-                      }
-                      className="rounded-lg bg-blue-600 px-4 py-2 text-white"
-                    >
-                      Selected
-                    </button>
-
+                    <TeacherButton
+                      label="Selected"
+                      variant="blue"
+                      onClick={() =>onRemove(word.id)}/>
                   ) : (
-
-                    <button
-                      onClick={() =>
-                        onAdd(word)
-                      }
-                      className="rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700"
-                    >
-                      Add
-                    </button>
-
+                    <TeacherButton
+                      label="Add"
+                      variant="green"
+                      onClick={() =>onAdd(word)}
+                    />
                   )}
-
-                </td>
+                </TableCell>
 
               </tr>
 
@@ -195,38 +137,22 @@ export default function WordTable({
 
         </tbody>
 
-      </table>
+      </TableContainer>
 
-      <div className="flex items-center justify-between border-t bg-gray-50 px-5 py-4">
-
-        <button
-          disabled={page === 1}
-          onClick={() =>
-            handlePageChange(page - 1)
-          }
-          className="rounded-lg border px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Previous
-        </button>
-
-        <span className="text-sm text-gray-600">
-          Page {page} of {totalPages}
-        </span>
-
-        <button
-          disabled={page === totalPages}
-          onClick={() =>
-            handlePageChange(page + 1)
-          }
-          className="rounded-lg border px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Next
-        </button>
-
+      <div className="border-t border-zinc-200 bg-zinc-50 px-5 py-4">
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          setPage={(value) => {
+            if (typeof value === "function") {
+              handlePageChange(value(page));
+            } else {
+              handlePageChange(value);
+            }
+          }}
+        />
       </div>
 
     </div>
-
   );
-
 }

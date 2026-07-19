@@ -1,6 +1,5 @@
-import type {
-  StudentRetention,
-} from "@/types/teacher";
+//EE 2
+import type {StudentRetention,} from "@/types/teacher";
 
 interface LearningPerformanceProps {
   retention: StudentRetention | null;
@@ -14,7 +13,8 @@ export default function LearningPerformance({
       ?.predictedRecall || 0;
 
   return (
-    <div className="mb-4 rounded-lg border bg-white p-4 shadow-sm">
+    <div className="mb-4 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm transition-all
+        duration-200 hover:-translate-y-1 hover:border-black/50 hover:shadow-lg">
       <h2 className="mb-3 text-lg font-semibold">
         Learning Performance
       </h2>

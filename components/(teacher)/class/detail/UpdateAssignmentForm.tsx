@@ -31,7 +31,7 @@ interface Props {
   onSearch: () => void;
 }
 
-export default function CreateAssignmentForm({
+export default function UpdateAssignmentForm({
   title,
   setTitle,
 
@@ -62,7 +62,9 @@ export default function CreateAssignmentForm({
         label="Assignment Title"
         value={title}
         placeholder="Enter assignment title..."
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) =>
+          setTitle(e.target.value)
+        }
       />
 
       <AreaField
@@ -70,7 +72,9 @@ export default function CreateAssignmentForm({
         rows={4}
         value={description}
         placeholder="Enter assignment description..."
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e) =>
+          setDescription(e.target.value)
+        }
         className="resize-none"
       />
 
@@ -81,7 +85,8 @@ export default function CreateAssignmentForm({
           dueDate
             ? new Date(
                 dueDate.getTime() -
-                  dueDate.getTimezoneOffset() * 60000
+                  dueDate.getTimezoneOffset() *
+                    60000
               )
                 .toISOString()
                 .slice(0, 16)
@@ -102,24 +107,31 @@ export default function CreateAssignmentForm({
           label="Hanzi"
           value={hanzi}
           placeholder="例如: 老师"
-          onChange={(e) => setHanzi(e.target.value)}
+          onChange={(e) =>
+            setHanzi(e.target.value)
+          }
         />
 
         <FormField
           label="Pinyin"
           value={pinyin}
           placeholder="laoshi"
-          onChange={(e) => setPinyin(e.target.value)}
+          onChange={(e) =>
+            setPinyin(e.target.value)
+          }
         />
 
         <FormField
           label="Meaning"
           value={meaning}
           placeholder="teacher"
-          onChange={(e) => setMeaning(e.target.value)}
+          onChange={(e) =>
+            setMeaning(e.target.value)
+          }
         />
 
         <div>
+
           <label className="mb-2 block text-xs sm:text-sm sm:font-medium">
             HSK Level
           </label>
@@ -147,29 +159,36 @@ export default function CreateAssignmentForm({
               focus:bg-white
             "
           >
+
             <option value="">
               All Levels
             </option>
 
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => (
-              <option
-                key={level}
-                value={level}
-              >
-                HSK {level}
-              </option>
-            ))}
+            {[1,2,3,4,5,6,7,8,9].map(
+              (level) => (
+                <option
+                  key={level}
+                  value={level}
+                >
+                  HSK {level}
+                </option>
+              )
+            )}
+
           </select>
+
         </div>
 
       </div>
 
       <div className="flex justify-end">
+
         <TeacherButton
           label="Search Vocabulary"
           variant="blue"
           onClick={onSearch}
         />
+
       </div>
 
     </div>

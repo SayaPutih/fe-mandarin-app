@@ -1,4 +1,4 @@
-import StatCard from "@/components/(teacher)/common/StatCard";
+import StatCard from "@/components/ui/common/StatCard";
 
 import type {
   VocabularyDetail,

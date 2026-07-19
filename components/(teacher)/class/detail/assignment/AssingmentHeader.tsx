@@ -1,20 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import TeacherButton from "@/components/ui/TeacherButton";
+
 
 interface Props {
   assignment: any;
-
+  onEdit: () => void;
   onRefresh: () => void;
 }
 
 export default function AssignmentHeader({
   assignment,
+  onEdit,
 }: Props) {
 
   return (
 
-    <div className="rounded-xl border bg-white p-6">
+    <div className="rounded-xl border border-zinc-200 bg-white p-6">
       <div className="flex items-start justify-between gap-6">
 
       <div className="flex-1">
@@ -31,18 +34,19 @@ export default function AssignmentHeader({
 
       <div className="flex items-center gap-3">
 
-        <button
-          className="rounded-lg border border-gray-300 px-4 py-2 transition hover:bg-gray-50"
-        >
-          Edit
-        </button>
+         <TeacherButton
+            variant="yellow"
+            label="Edit"
+            onClick={onEdit}
+            style="py-2"
+          />
 
-        <Link
+        <TeacherButton
+          variant="gray"
+          label="Back"
           href="../"
-          className="rounded-lg border border-gray-300 px-4 py-2 transition hover:bg-gray-50"
-        >
-          Back
-        </Link>
+          style="py-2"
+        />
 
       </div>
 
@@ -80,14 +84,14 @@ export default function AssignmentHeader({
           </p>
         </div>
 
-        <div>
+        {/* <div>
           <p className="text-sm text-gray-500">
             Students
           </p>
           <p className="font-medium">
             {assignment.totalStudents}
           </p>
-        </div>
+        </div> */}
 
       </div>
 

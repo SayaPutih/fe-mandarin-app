@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import AssignmentHeader from "./AssingmentHeader";
-
+import UpdateAssignmentSection from "../UpdateAssignmentSection";
 import {
   useAssignmentCards,
   useAssignmentDetail,
@@ -42,6 +42,8 @@ export default function AssignmentDetailPage({
     totalPages: studentsTotalPages,
   } = useAssignmentStudents(assignmentId);
 
+  const [isEditing, setIsEditing] = useState(false);
+
   const [tab, setTab] = useState<
     "cards" | "students"
   >("cards");
@@ -51,6 +53,16 @@ export default function AssignmentDetailPage({
       <div className="rounded-xl border bg-white p-10 text-center text-gray-500">
         Loading assignment...
       </div>
+    );
+  }
+
+  if (isEditing) {
+    return (
+      <UpdateAssignmentSection
+        assignmentId={assignment.id}
+        onBack={() => setIsEditing(false)}
+        onRefresh={refresh}
+      />
     );
   }
 
@@ -69,11 +81,12 @@ export default function AssignmentDetailPage({
       <AssignmentHeader
         assignment={assignment}
         onRefresh={refresh}
+        onEdit={() => setIsEditing(true)}
       />
 
       <div>
 
-        <div className="flex gap-3 border-b">
+        <div className="flex gap-3 border-b border-zinc-500 ">
 
           <button
             onClick={() =>
@@ -88,7 +101,7 @@ export default function AssignmentDetailPage({
             Flashcards
           </button>
 
-          <button
+          {/* <button
             onClick={() =>
               setTab("students")
             }
@@ -99,7 +112,7 @@ export default function AssignmentDetailPage({
             }`}
           >
             Student Progress
-          </button>
+          </button> */}
 
         </div>
 

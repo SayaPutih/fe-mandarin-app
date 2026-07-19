@@ -15,7 +15,7 @@ import { useUsers } from "@/hooks/useUsers";
 export default function UserPage() {
   const {
     loading,
-    filteredUsers,
+    users,
     search,
     setSearch,
     page,
@@ -67,7 +67,7 @@ export default function UserPage() {
           />
 
           <UserTable
-            users={filteredUsers}
+            users={users}
             loading={loading}
             onEdit={(user) => {
               setSelectedUser(user);
@@ -79,7 +79,7 @@ export default function UserPage() {
           />
 
           {!loading &&
-            filteredUsers.length === 0 && (
+            users.length === 0 && (
               <EmptyUser />
             )}
 

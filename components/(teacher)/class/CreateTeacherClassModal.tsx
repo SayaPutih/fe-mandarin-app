@@ -1,6 +1,9 @@
+//EE 2
 "use client";
 
 import react,{ useState,useEffect } from "react";
+import { FormField,AreaField } from "@/components/ui/form/FormField";
+import TeacherButton from "@/components/ui/TeacherButton";
 
 interface CreateTeacherClassModalProps {
   open: boolean;
@@ -38,7 +41,7 @@ export default function CreateTeacherClassModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       onClick={onClose}
     >
       <div
@@ -53,51 +56,37 @@ export default function CreateTeacherClassModal({
           onSubmit={handleSubmit}
           className="space-y-4"
         >
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Class Name
-            </label>
-
-            <input
-              type="text"
+            <FormField
+              label="Class Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. HSK 1 Morning"
               className="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Description
-            </label>
-
-            <textarea
+            <AreaField
+              label="Description"
               rows={4}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description..."
               className="w-full resize-none rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
             />
-          </div>
+
 
           <div className="flex justify-end gap-3 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-lg border px-4 py-2 hover:bg-gray-100"
-            >
-              Cancel
-            </button>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
-            >
-              {loading ? "Creating..." : "Create"}
-            </button>
+            <TeacherButton
+                variant="red"
+                label="Cancel"
+                onClick={onClose}
+            />
+
+            <TeacherButton
+                variant="green"
+                label={loading ? "Creating..." : "Create"}
+                disabled={loading}
+            />
           </div>
         </form>
       </div>

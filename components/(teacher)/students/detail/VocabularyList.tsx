@@ -1,3 +1,4 @@
+//EE 4
 import type {
   StudentMemoryWord,
 } from "@/types/teacher";
@@ -21,7 +22,11 @@ export default function VocabularyList({
   emptyText,
 }: VocabularyListProps) {
   return (
-    <div className="rounded-lg border bg-white p-4 shadow-sm">
+    <div className="rounded-lg border bg-white p-4 shadow-sm border-zinc-200 transition-all
+        duration-200
+        hover:-translate-y-1
+        hover:border-black/50
+        hover:shadow-lg">
       <h2 className="mb-3 text-lg font-semibold">
         {title}
       </h2>
@@ -33,7 +38,7 @@ export default function VocabularyList({
             .map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between rounded border px-3 py-2"
+                className="flex items-center justify-between rounded border-zinc-200 border px-3 py-2"
               >
                 <div>
                   <div className="text-sm font-semibold">

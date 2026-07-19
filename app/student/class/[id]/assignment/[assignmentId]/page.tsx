@@ -1,4 +1,4 @@
-import AssignmentPage from "@/components/(student)/Class/assignment/AssignmentPage";
+import AssignmentPage from "@/components/(student)/class/assignment/AssignmentPage";
 
 export default function Page() {
     return <AssignmentPage />;

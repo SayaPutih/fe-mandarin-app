@@ -1,5 +1,5 @@
 import { TeacherClass } from "@/types/class";
-import ClassCard from "./ClassCard";
+import ClassCard from "./X_ClassCard";
 
 interface Props {
     classes: TeacherClass[];

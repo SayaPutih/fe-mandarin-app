@@ -28,10 +28,11 @@ export const getUserProfile = async()=>{
 
 export const getAllUsers = async (
   page = 1,
-  limit = 5
+  limit = 5,
+  search = ""
 ) => {
   const response = await api.get(
-    `/admin/get-all?page=${page}&limit=${limit}`
+    `/admin/get-all?page=${page}&limit=${limit}&search=${search}`
   );
 
   return response.data;

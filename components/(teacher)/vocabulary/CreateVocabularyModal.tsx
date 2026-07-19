@@ -1,21 +1,17 @@
+//EE
 "use client";
 
-import type {
-  VocabularyForm,
-} from "@/types/teacher";
+import TeacherButton from "@/components/ui/TeacherButton";
+import type {VocabularyForm} from "@/types/teacher";
+import {FormField,NumberField} from "@/components/ui/form/FormField";
+import { Trash } from 'lucide-react';
 
 interface Props {
   open: boolean;
-
   onClose: () => void;
-
   onCreate: () => void;
-
   form: VocabularyForm;
-
-  setForm: React.Dispatch<
-    React.SetStateAction<VocabularyForm>
-  >;
+  setForm: React.Dispatch<React.SetStateAction<VocabularyForm>>;
 }
 
 export default function CreateVocabularyModal({
@@ -44,114 +40,49 @@ export default function CreateVocabularyModal({
             </div>
 
             <div className="rounded-full bg-zinc-100 px-4 py-2 text-xs font-semibold">
-              NEW WORD
+              Hanzi
             </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
 
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Hanzi
-              </label>
+            <FormField
+              label="Hanzi"
+              value={form.simplified}
+              onChange={(e)=>setForm({...form,simplified:e.target.value})}
+            />
+            
+            <FormField
+              label="Pinyin"
+              value={form.pinyin}
+              onChange={(e)=>setForm({...form,pinyin:e.target.value})}
+            />
 
-              <input
-                value={form.simplified}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    simplified:e.target.value,
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Pinyin
-              </label>
-
-              <input
-                value={form.pinyin}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    pinyin:e.target.value,
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
-              />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                HSK Level
-              </label>
-
-              <input
-                type="number"
+            <div className="grid grid-cols-4 flex-1 items-center justify-center w-full col-span-2 gap-2">
+              <NumberField
+                label="HSK Level"
                 min={1}
                 max={9}
                 value={form.hskLevel}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    hskLevel:Number(e.target.value),
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
+                onChange={(e)=>setForm({...form,hskLevel:Number(e.target.value)})}
               />
-            </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Radical
-              </label>
-
-              <input
+              <FormField
+                label="Radical"
                 value={form.radical}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    radical:e.target.value,
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
+                onChange={(e)=>setForm({...form,radical:e.target.value})}
               />
-            </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Part of Speech
-              </label>
-
-              <input
+              <FormField
+                label="POS"
                 value={form.pos}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    pos:e.target.value,
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
+                onChange={(e)=>setForm({...form,pos:e.target.value})}
               />
-            </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Difficulty Score
-              </label>
-
-              <input
+              <FormField
+                label="Difficulty"
                 value={form.lexicalDifficulty}
-                onChange={(e)=>
-                  setForm({
-                    ...form,
-                    lexicalDifficulty:e.target.value,
-                  })
-                }
-                className="w-full rounded-xl border bg-zinc-50 px-4 py-3"
+                onChange={(e)=>setForm({...form,lexicalDifficulty:e.target.value})}
               />
             </div>
 
@@ -160,13 +91,11 @@ export default function CreateVocabularyModal({
           <div className="mt-6">
 
             <div className="mb-4 flex items-center justify-between">
-
               <h3 className="text-lg font-semibold">
                 Meanings
               </h3>
-
-              <button
-                type="button"
+              <TeacherButton
+                variant="gray"
                 onClick={() =>
                   setForm({
                     ...form,
@@ -176,10 +105,8 @@ export default function CreateVocabularyModal({
                     ],
                   })
                 }
-                className="rounded-xl border px-4 py-2"
-              >
-                + Add Meaning
-              </button>
+                label="+ Add Meaning"
+              />
 
             </div>
 
@@ -188,10 +115,10 @@ export default function CreateVocabularyModal({
               {form.meanings.map((meaning,index)=>(
                 <div
                   key={index}
-                  className="flex gap-2"
+                  className="flex gap-2 w-full"
                 >
 
-                  <input
+                  <FormField
                     value={meaning}
                     onChange={(e)=>{
 
@@ -199,8 +126,7 @@ export default function CreateVocabularyModal({
                         ...form.meanings,
                       ];
 
-                      updated[index]=
-                        e.target.value;
+                      updated[index]=e.target.value;
 
                       setForm({
                         ...form,
@@ -208,15 +134,14 @@ export default function CreateVocabularyModal({
                       });
 
                     }}
-                    className="flex-1 rounded-xl border bg-zinc-50 px-4 py-3"
+                    wrapperClassName="flex-1"
+                    className="flex-1 w-full"
                   />
 
                   {form.meanings.length>1 && (
-
-                    <button
-                      type="button"
+                    <TeacherButton
+                      icon={<Trash size={18} />}
                       onClick={()=>{
-
                         setForm({
                           ...form,
                           meanings:
@@ -224,13 +149,9 @@ export default function CreateVocabularyModal({
                             (_,i)=>i!==index
                           ),
                         });
-
                       }}
-                      className="w-12 rounded-xl border text-red-600"
-                    >
-                      ×
-                    </button>
-
+                      variant="red"
+                    />
                   )}
 
                 </div>
@@ -240,22 +161,17 @@ export default function CreateVocabularyModal({
 
           </div>
 
-          <div className="mt-6 flex justify-end gap-3 border-t pt-5">
-
-            <button
+          <div className="mt-6 flex justify-end gap-3 pt-5">
+            <TeacherButton
               onClick={onClose}
-              className="rounded-xl border px-5 py-2"
-            >
-              Cancel
-            </button>
-
-            <button
+              label="Cancel"
+              variant="red"
+            />
+            <TeacherButton
+              label="Create Vocabulary"
+              variant="green"
               onClick={onCreate}
-              className="rounded-xl bg-black px-5 py-2 text-white"
-            >
-              Create Vocabulary
-            </button>
-
+            />
           </div>
 
         </div>

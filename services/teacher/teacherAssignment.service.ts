@@ -74,6 +74,21 @@ export const createAssignment = async (
   }
 };
 
+export const getUpdateAssignment =
+async (
+  assignmentId: string
+) => {
+
+  const response =
+    await api.get(
+      `/teacher/assignments/${assignmentId}/update`
+    );
+    console.log("Assignmen class Detail service")
+          console.log(response);
+  return response.data;
+
+};
+
 export const getAssignmentDetail =
 async (
   assignmentId: string
@@ -154,4 +169,24 @@ export const removeAssignment = async (
     }
   );
   return response.data;
+};
+
+export const updateAssignment = async (
+  assignmentId: string,
+  data: {
+    title: string;
+    description?: string;
+    dueDate?: string;
+    wordIds: string[];
+  }
+) => {
+
+  const response =
+    await api.put(
+      `/teacher/assignments/${assignmentId}/update`,
+      data
+    )
+
+  return response.data;
+
 };

@@ -1,4 +1,5 @@
-import StatCard from "@/components/(teacher)/common/StatCard";
+//EE 4
+import StatCard from "@/components/ui/common/StatCard";
 
 interface VocabularyStatsProps {
   masteredCount: number;

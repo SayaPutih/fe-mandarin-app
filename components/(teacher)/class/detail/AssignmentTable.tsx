@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { Trash2, Eye } from "lucide-react";
 
+import {
+  TableContainer,
+  TableHeader,
+  TableCell,
+} from "@/components/ui/Table";
+import TeacherButton from "@/components/ui/TeacherButton";
+
 import { ConfirmationModal } from "./DetailModal";
 import { useRemoveAssignment } from "@/hooks/useTeacherAssignmentClass";
 
@@ -46,105 +53,109 @@ export default function AssignmentTable({
 
   if (loading) {
     return (
-      <div className="py-12 text-center text-gray-500">
+      <div className="rounded-xl border border-zinc-200 bg-white py-12 text-center text-zinc-500">
         Loading assignments...
-      </div>
-    );
-  }
-
-  if (assignments.length === 0) {
-    return (
-      <div className="py-12 text-center text-gray-500">
-        No assignments found.
       </div>
     );
   }
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
 
-        <table className="w-full">
+        <TableContainer>
 
-          <thead className="bg-gray-50">
-            <tr className="text-left text-sm font-semibold text-gray-700">
+          <thead className="border-b border-zinc-200 bg-zinc-100">
+            <tr>
 
-              <th className="px-6 py-4">
+              <TableHeader className="text-center">
                 Title
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4">
+              <TableHeader className="text-center">
                 Cards
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4">
+              <TableHeader className="text-center">
                 Due Date
-              </th>
+              </TableHeader>
 
-              <th className="px-6 py-4 text-center">
+              <TableHeader className="text-center">
                 Actions
-              </th>
+              </TableHeader>
 
             </tr>
           </thead>
 
           <tbody>
 
-            {assignments.map((item) => (
+            {assignments.length === 0 && (
+              <tr>
+                <TableCell
+                  colSpan={4}
+                  className="py-10 text-center text-zinc-500"
+                >
+                  No assignments found.
+                </TableCell>
+              </tr>
+            )}
 
+            {assignments.map((item) => (
               <tr
                 key={item.id}
-                className="border-t transition hover:bg-gray-50"
+                className="border-t border-black/5 transition-colors hover:bg-zinc-50"
               >
-                <td className="px-6 py-4 font-medium">
+
+                <TableCell className="font-medium text-center">
                   {item.title}
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4">
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">
-                    {item.assignmentCards?.length ?? 0} cards
+                <TableCell>
+                  <span className=" flex items-center justify-center text-center">
+                    <p className="bg-blue-500 rounded-full px-3 py-1 text-xs text-white ">{item.assignmentCards?.length ?? 0} Cards</p>
                   </span>
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4 text-gray-500">
+                <TableCell className="text-zinc-500 text-center">
                   {item.dueDate
                     ? new Date(item.dueDate).toLocaleDateString()
                     : "-"}
-                </td>
+                </TableCell>
 
-                <td className="px-6 py-4">
+                <TableCell>
 
-                  <div className="flex justify-center gap-3">
+                  <div className="flex justify-center gap-2 text-center">
 
                     <Link
                       href={`/teacher/class/${classId}/assignment/${item.id}`}
-                      className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700"
                     >
-                      <Eye size={16} />
-                      View
+                      <TeacherButton
+                        label="View"
+                        icon={<Eye size={16} />}
+                        variant="blue"
+                      />
                     </Link>
 
-                    <button
+                    <TeacherButton
+                      label="Delete"
+                      icon={<Trash2 size={16} />}
+                      variant="red"
                       onClick={() => {
                         setSelectedAssignment(item);
                         setShowModal(true);
                       }}
-                      className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm text-white transition hover:bg-red-700"
-                    >
-                      <Trash2 size={16} />
-                      Delete
-                    </button>
+                    />
 
                   </div>
 
-                </td>
-              </tr>
+                </TableCell>
 
+              </tr>
             ))}
 
           </tbody>
 
-        </table>
+        </TableContainer>
 
       </div>
 

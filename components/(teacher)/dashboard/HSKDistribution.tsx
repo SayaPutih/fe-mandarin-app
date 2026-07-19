@@ -17,7 +17,11 @@ export default function HSKDistribution({
     ) || 1;
 
   return (
-    <div className="rounded-xl border bg-white p-5 shadow-sm">
+    <div className="rounded-xl border bg-white p-5 shadow-sm border-zinc-200 transition-all
+        duration-200
+        hover:-translate-y-1
+        hover:border-black/50
+        hover:shadow-lg">
       <h2 className="mb-4 text-xl font-semibold">
         HSK Distribution
       </h2>

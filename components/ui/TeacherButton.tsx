@@ -3,10 +3,10 @@ import Link from "next/link";
 import {ReactNode} from "react";
 
 interface TeacherButtonProps{
-    label : string;
+    label? : string;
     href? : string;
     onClick? : ()=>void;
-    variant?: "blue" | "yellow" | "red" | "green" | "gray";
+    variant?: "blue" | "yellow" | "red" | "green" | "gray" | "none";
     icon? : ReactNode;
     disabled? : boolean;
     style? : string;
@@ -18,6 +18,7 @@ const variants = {
     red : "bg-red-600 hover:bg-red-700",
     green : "bg-green-600 hover:bg-green-700",
     gray : "bg-gray-600 hover:bg-gray-700",
+    none : ""
 }
 
 export default function TeacherButton({

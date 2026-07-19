@@ -1,10 +1,12 @@
+//EE
 "use client";
+
+import TeacherButton from "@/components/ui/TeacherButton";
+import { Trash,Pencil   } from 'lucide-react';
 
 interface VocabularyHeaderProps {
   onBack: () => void;
-
   onEdit: () => void;
-
   onDelete: () => void;
 }
 
@@ -15,27 +17,27 @@ export default function VocabularyHeader({
 }: VocabularyHeaderProps) {
   return (
     <div className="mb-6 flex items-center justify-between">
-      <button
+      <TeacherButton
+        variant="gray"
+        label="← Back"
         onClick={onBack}
-        className="rounded-xl border bg-white px-5 py-3 shadow-sm transition hover:bg-zinc-100"
-      >
-        ← Back
-      </button>
+        style="py-3"
+      />
 
       <div className="flex gap-3">
-        <button
+        <TeacherButton
+          variant="yellow"
+          icon={<Pencil width={16} />}
           onClick={onEdit}
-          className="rounded-xl border border-orange-200 bg-orange-50 px-5 py-3 text-orange-600"
-        >
-          Edit Vocabulary
-        </button>
+          style=""
+        />
 
-        <button
+        <TeacherButton
+          icon={<Trash width={16} />}
+          variant="red"
           onClick={onDelete}
-          className="rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-red-600"
-        >
-          Delete
-        </button>
+          style=""
+        />
       </div>
     </div>
   );

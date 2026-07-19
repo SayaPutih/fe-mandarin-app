@@ -1,6 +1,6 @@
-import type {
-  VocabularyDetail,
-} from "@/types/teacher";
+//EE 3
+
+import type {VocabularyDetail,} from "@/types/teacher";
 
 interface VocabularyInformationProps {
   word: VocabularyDetail;
@@ -10,7 +10,8 @@ export default function VocabularyInformation({
   word,
 }: VocabularyInformationProps) {
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border bg-white p-6 shadow-sm  border-zinc-200 transition-all
+        duration-200 hover:-translate-y-1 hover:border-black/50 hover:shadow-lg">
       <h2 className="mb-6 text-2xl font-semibold">
         Vocabulary Information
       </h2>

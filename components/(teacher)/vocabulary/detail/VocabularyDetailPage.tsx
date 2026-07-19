@@ -1,3 +1,4 @@
+//EE 3
 "use client";
 
 import { useParams } from "next/navigation";
@@ -5,19 +6,17 @@ import { useRouter } from "next/navigation";
 
 import { useVocabularyDetail } from "@/hooks/useVocabularyDetail";
 import { LoadingSpinner } from "@/components/ui/Loading";
-//import VocabularyDetailLoading from "./VocabularyDetailLoading";
 import VocabularyHeader from "./VocabularyHeader";
 import VocabularyHero from "./VocabularyHero";
-import VocabularyQuickStats from "./VocabularyQuickStats";
+// import VocabularyQuickStats from "./VocabularyQuickStats";
 import VocabularyInformation from "./VocabularyInformation";
 import EditVocabularyModal from "./EditVocabularyModal";
 import DeleteVocabularyModal from "./DeleteVocabularyModal";
 
 export default function VocabularyDetailPage() {
+
   const router = useRouter();
-
   const params = useParams();
-
   const id = params.id as string;
 
   const {
@@ -52,7 +51,7 @@ export default function VocabularyDetailPage() {
       />
 
       <VocabularyHero word={word}/>
-      <VocabularyQuickStats word={word}/>
+      {/* <VocabularyQuickStats word={word}/> */}
       <VocabularyInformation word={word}/>
 
       <EditVocabularyModal

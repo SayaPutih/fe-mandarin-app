@@ -1,5 +1,7 @@
 "use client";
 
+import TeacherButton from "@/components/ui/TeacherButton";
+
 interface NoticeModalProps {
   message: string;
   onClose: () => void;
@@ -23,12 +25,12 @@ export function NoticeModal({
         </p>
 
         <div className="flex justify-end">
-          <button
+          <TeacherButton
+            label="Close"
+            variant="blue"
             onClick={onClose}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-          >
-            Close
-          </button>
+            style="py-3"
+          />
         </div>
 
       </div>
@@ -78,22 +80,21 @@ export function ConfirmationModal({
 
         <div className="mt-8 flex justify-end gap-3">
 
-          <button
+          <TeacherButton
+            label="Cancel"
             onClick={onClose}
             disabled={loading}
-            className="rounded-lg border px-4 py-2 hover:bg-gray-100 disabled:opacity-50"
-          >
-            Cancel
-          </button>
+            variant="blue"
+            style="py-2"
+          />
 
-          <button
+          <TeacherButton
+            label="Delete"
             onClick={onConfirm}
             disabled={loading}
-            className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:opacity-50"
-          >
-            Delete
-          </button>
-
+            variant="red"
+            style="py-2"
+          />
         </div>
 
       </div>

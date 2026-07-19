@@ -1,4 +1,4 @@
-import ClassDetailPage from "@/components/(student)/Class/detail/ClassDetailPage"
+import ClassDetailPage from "@/components/(student)/class/detail/ClassDetailPage"
 
 const ClassDetail =()=>{
     return(

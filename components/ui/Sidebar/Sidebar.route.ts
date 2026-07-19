@@ -3,13 +3,13 @@ export const TEACHER_ROUTES = [
         label: "Dashboard",
         href: "/teacher/dashboard",
     },
+    // {
+    //     label: "Analytics",
+    //     href: "/teacher/analytics",
+    // },
     {
         label: "Class",
         href: "/teacher/class",
-    },
-    {
-        label: "Analytics",
-        href: "/teacher/analytics",
     },
     {
         label: "Students",

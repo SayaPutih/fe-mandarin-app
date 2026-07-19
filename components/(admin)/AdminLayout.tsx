@@ -16,7 +16,7 @@ export default function AdminLayout({
         const user = getUser();
 
         if (!user) {
-            router.replace("/login");
+            router.replace("/auth/login");
             return;
         }
 

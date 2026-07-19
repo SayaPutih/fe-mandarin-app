@@ -12,7 +12,8 @@ export default function StudentCard({
   student,
 }: StudentCardProps) {
   return (
-    <div className="rounded-lg border bg-white p-3 shadow-sm">
+    <div className="rounded-lg border bg-white p-3 shadow-sm border-zinc-200 transition-all
+        duration-200 hover:-translate-y-1 hover:border-black/50 hover:shadow-lg">
       <div className="mb-3 flex items-center gap-3">
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-sm font-bold text-white">
           {student.name?.[0] || "S"}

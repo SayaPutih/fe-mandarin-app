@@ -1,6 +1,6 @@
-import type {
-  HardestVocabulary as HardestVocabularyType,
-} from "@/types/teacher";
+//EE 3
+import {TableContainer,TableHeader,TableCell} from "@/components/ui/Table";
+import type {HardestVocabulary as HardestVocabularyType,} from "@/types/teacher";
 
 interface HardestVocabularyProps {
   words: HardestVocabularyType[];
@@ -10,65 +10,69 @@ export default function HardestVocabulary({
   words,
 }: HardestVocabularyProps) {
   return (
-    <div className="rounded-xl border bg-white p-5 shadow-sm">
+    <div className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm transition-all
+        duration-200
+        hover:-translate-y-1
+        hover:border-black/50
+        hover:shadow-lg">
       <h2 className="mb-4 text-xl font-semibold">
         Hardest Vocabulary
       </h2>
 
       <table className="w-full table-fixed text-sm">
         <thead>
-          <tr className="border-b">
-            <th className="w-[20%] pb-2 text-left text-xs font-medium text-zinc-500">
+          <tr className="border-b border-zinc-200">
+            <TableHeader className="w-[20%] pb-2 text-center text-xs font-medium text-zinc-500">
               Hanzi
-            </th>
+            </TableHeader>
 
-            <th className="w-[40%] pb-2 text-left text-xs font-medium text-zinc-500">
+            <TableHeader className="w-[40%] pb-2 text-center text-xs font-medium text-zinc-500">
               Pinyin
-            </th>
+            </TableHeader>
 
-            <th className="w-[20%] pb-2 text-left text-xs font-medium text-zinc-500">
+            <TableHeader className="w-[20%] pb-2 text-center text-xs font-medium text-zinc-500">
               Correct
-            </th>
+            </TableHeader>
 
-            <th className="w-[20%] pb-2 text-left text-xs font-medium text-zinc-500">
+            <TableHeader className="w-[20%] pb-2 text-center text-xs font-medium text-zinc-500">
               Reviews
-            </th>
+            </TableHeader>
           </tr>
         </thead>
 
         <tbody>
           {words
-            .slice(0, 10)
+            .slice(0, 4)
             .map((word) => (
               <tr
                 key={word.id}
-                className="border-b last:border-none"
+                className="border-b last:border-none border-zinc-200"
               >
-                <td className="py-2 font-semibold">
+                <TableCell className="py-2 font-semibold text-center">
                   {
                     word.word
                       ?.simplified
                   }
-                </td>
+                </TableCell>
 
-                <td className="truncate py-2">
+                <TableCell className="truncate py-2 text-center">
                   {
                     word.word
                       ?.pinyin
                   }
-                </td>
+                </TableCell>
 
-                <td className="py-2">
+                <TableCell className="py-2 text-center">
                   {
                     word.correctReviews
                   }
-                </td>
+                </TableCell>
 
-                <td className="py-2">
+                <TableCell className="py-2 text-center">
                   {
                     word.totalReviews
                   }
-                </td>
+                </TableCell>
               </tr>
             ))}
         </tbody>

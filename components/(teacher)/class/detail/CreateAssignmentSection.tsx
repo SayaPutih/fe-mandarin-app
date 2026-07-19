@@ -7,6 +7,8 @@ import WordTable from "./WordTable";
 import {useWords,useCreateAssignment} from "@/hooks/useTeacherAssignmentClass";
 import type {MandarinWord,} from "@/types/teacher";
 import {NoticeModal} from "@/components/(teacher)/class/detail/DetailModal";
+import TeacherButton from "@/components/ui/TeacherButton";
+import { LoadingSpinner } from "@/components/ui/Loading";
 
 interface Props {
   classId: string;
@@ -48,33 +50,15 @@ export default function CreateAssignmentSection({
   const [selectedWords,setSelectedWords] = useState<MandarinWord[]>([]);
 
   const handleAddWord = (word: MandarinWord) => {
-
-    if (
-      selectedWords.some(
-        (w) => w.id === word.id
-      )
-    ) {
+    if (selectedWords.some((w) => w.id === word.id)) {
       return;
     }
-
-    setSelectedWords((prev) => [
-      word,
-      ...prev,
-    ]);
-
+    setSelectedWords((prev) => [word,...prev,]);
   };
 
-  const handleRemoveWord = (
-    id: string
-  ) => {
 
-    setSelectedWords((prev) =>
-      prev.filter(
-        (word) =>
-          word.id !== id
-      )
-    );
-
+  const handleRemoveWord = (id: string) => {
+    setSelectedWords((prev) =>prev.filter((word) =>word.id !== id));
   };
 
   const handleSubmit = async () => {
@@ -91,24 +75,12 @@ export default function CreateAssignmentSection({
       return;
     }
 
-    const result =
-      await handleCreateAssignment(
-        classId,
+    const result = await handleCreateAssignment(classId,
         {
           title,
-
-          description:
-            description || undefined,
-
-          dueDate:
-            dueDate
-              ? dueDate.toISOString()
-              : undefined,
-
-          wordIds:
-            selectedWords.map(
-              (word) => word.id
-            ),
+          description:description || undefined,
+          dueDate:dueDate ? dueDate.toISOString(): undefined,
+          wordIds:selectedWords.map((word) => word.id),
         }
       );
 
@@ -120,7 +92,6 @@ export default function CreateAssignmentSection({
 
     setModalMessage("Assignment created successfully.");
     setModalOpen(true)
-
     onBack();
 
   };
@@ -146,18 +117,14 @@ export default function CreateAssignmentSection({
   };
 
   const orderedWords = [
-
     ...selectedWords,
-
     ...words.filter(
-      (word) =>
-        !selectedWords.some(
-          (selected) =>
+      (word) =>!selectedWords.some((selected) =>
             selected.id === word.id
         )
     ),
-
   ];
+
 
   return (
 
@@ -169,37 +136,23 @@ export default function CreateAssignmentSection({
           Create Assignment
         </h2>
 
-        <button
-          onClick={onBack}
-          className="rounded-lg border px-4 py-2 hover:bg-gray-50"
-        >
-          Back
-        </button>
-
       </div>
 
       <CreateAssignmentForm
         title={title}
         setTitle={setTitle}
-
         description={description}
         setDescription={setDescription}
-
         dueDate={dueDate}
         setDueDate={setDueDate}
-
         hanzi={hanzi}
         setHanzi={handleHanziChange}
-
         pinyin={pinyin}
         setPinyin={handlePinyinChange}
-
         meaning={meaning}
         setMeaning={handleMeaningChange}
-
         hskLevel={hskLevel}
         setHskLevel={handleHskLevelChange}
-
         onSearch={refresh}
       />
 
@@ -219,41 +172,33 @@ export default function CreateAssignmentSection({
         onRemove={handleRemoveWord}
       />
 
-      <div className="flex items-center justify-between rounded-xl border bg-white p-5">
-
+      <div className="flex items-center flex-col sm:flex-row sm:space-y-0 space-y-2  justify-between rounded-xl border border-zinc-200 bg-white p-5">
         <div>
-
           <p className="font-medium">
             {selectedWords.length} Words Selected
           </p>
-
           <p className="text-sm text-gray-500">
             These words will be included in this assignment.
           </p>
-
         </div>
+        <div className="flex gap-3 items-end justify-end w-full">
 
-        <div className="flex gap-3">
-
-          <button
+          <TeacherButton
+            label="Cancel"
             onClick={onBack}
-            className="rounded-lg border px-5 py-2"
-          >
-            Cancel
-          </button>
+            variant="red"
+            style="py-3"
+          />
 
-          <button
+          <TeacherButton
+            label={createLoading ? "Creating..." : "Create Assignment"}
             disabled={createLoading}
             onClick={handleSubmit}
-            className="rounded-lg bg-green-600 px-5 py-2 text-white disabled:opacity-50"
-          >
-            {createLoading
-              ? "Creating..."
-              : "Create Assignment"}
-          </button>
+            variant="green"
+            style="disabled:opacity-50 py-3"
+          />
 
         </div>
-
       </div>
       
       {modalOpen && <NoticeModal message={modalMessage} onClose={()=>setModalOpen(false)} />}

@@ -1,27 +1,30 @@
-"use client";
+//EE 2
 
+"use client";
+import TeacherButton from "@/components/ui/TeacherButton";
+import { TableContainer,TableHeader,TableCell } from "@/components/ui/Table";
 import { TeacherClass } from "@/types/class";
 import Link from "next/link";
 
 interface ClassTableProps {
   classes: TeacherClass[];
+  onDelete: (id: string) => void;
 }
 
 export default function ClassTable({
   classes,
+  onDelete,
 }: ClassTableProps) {
   return (
-    <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table className="w-full">
+    <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
+      <TableContainer>
         <thead className="bg-gray-100">
           <tr className="text-left text-sm text-gray-700">
-            <th className="px-6 py-4">Class Name</th>
-            <th className="px-6 py-4">Description</th>
-            <th className="px-6 py-4">Enrolled</th>
-            <th className="px-6 py-4">Created</th>
-            <th className="px-6 py-4 text-center">
-              Actions
-            </th>
+            <TableHeader className="px-6 py-4">Class Name</TableHeader>
+            <TableHeader className="px-6 py-4">Description</TableHeader>
+            <TableHeader className="px-6 py-4">Enrolled</TableHeader>
+            <TableHeader className="px-6 py-4">Created</TableHeader>
+            <TableHeader className="px-6 py-4 text-center">Actions</TableHeader>
           </tr>
         </thead>
 
@@ -29,7 +32,7 @@ export default function ClassTable({
           {classes.map((item) => (
             <tr
               key={item.id}
-              className="border-t hover:bg-gray-50"
+              className="border-t hover:bg-gray-50 border-zinc-200"
             >
               <td className="px-6 py-4 font-medium">
                 {item.name}
@@ -51,28 +54,22 @@ export default function ClassTable({
 
               <td className="px-6 py-4">
                 <div className="flex justify-center gap-2">
-                  <button
-                    className="rounded-lg bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
-                  >
-                    <Link
-                        href={`/teacher/class/${item.id}`}
-                        className=""
-                    >
-                        View
-                    </Link>
-                  </button>
+                  <TeacherButton
+                    label="View"
+                    href={`/teacher/class/${item.id}`}
+                  />
 
-                  <button
-                    className="rounded-lg bg-yellow-500 px-3 py-1 text-sm text-white hover:bg-yellow-600"
-                  >
-                    Edit
-                  </button>
+                  <TeacherButton
+                    label="Delete"
+                    variant="red"
+                    onClick={() => onDelete(item.id)}
+                  />
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </TableContainer>
     </div>
   );
 }

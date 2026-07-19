@@ -2,6 +2,13 @@
 
 import { useRef } from "react";
 
+import Pagination from "@/components/ui/Pagination";
+import {
+  TableContainer,
+  TableHeader,
+  TableCell,
+} from "@/components/ui/Table";
+
 interface Props {
   loading: boolean;
 
@@ -51,7 +58,7 @@ export default function AssignmentCardTable({
 
     return (
 
-      <div className="rounded-xl border bg-white p-10 text-center text-gray-500">
+      <div className="rounded-xl border border-zinc-200 bg-white p-10 text-center text-zinc-500">
         Loading flashcards...
       </div>
 
@@ -63,30 +70,30 @@ export default function AssignmentCardTable({
 
     <div
       ref={tableRef}
-      className="overflow-hidden rounded-xl border bg-white"
+      className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm"
     >
 
-      <table className="w-full">
+      <TableContainer>
 
-        <thead className="bg-gray-100">
+        <thead className="border-b border-zinc-200 bg-zinc-100">
 
           <tr>
 
-            <th className="px-4 py-3 text-left">
+            <TableHeader className="text-center">
               Hanzi
-            </th>
+            </TableHeader>
 
-            <th className="px-4 py-3 text-left">
+            <TableHeader className="text-center">
               Pinyin
-            </th>
+            </TableHeader>
 
-            <th className="px-4 py-3 text-left">
+            <TableHeader className="text-center">
               Meaning
-            </th>
+            </TableHeader>
 
-            <th className="px-4 py-3 text-center">
+            <TableHeader className="text-center">
               HSK
-            </th>
+            </TableHeader>
 
           </tr>
 
@@ -98,39 +105,39 @@ export default function AssignmentCardTable({
 
             <tr>
 
-              <td
+              <TableCell
                 colSpan={4}
-                className="p-10 text-center text-gray-500"
+                className="py-10 text-center text-zinc-500"
               >
                 No flashcards found.
-              </td>
+              </TableCell>
 
             </tr>
 
           )}
 
-          {cards.map((card: any) => (
+          {cards.map((card) => (
 
             <tr
               key={card.id}
-              className="border-t hover:bg-gray-50"
+              className="border-t border-black/5 transition-colors hover:bg-zinc-50"
             >
 
-              <td className="px-4 py-4 font-medium">
+              <TableCell className="font-medium  text-center">
                 {card.word.simplified}
-              </td>
+              </TableCell>
 
-              <td className="px-4 py-4">
+              <TableCell className=" text-center">
                 {card.word.pinyin}
-              </td>
+              </TableCell>
 
-              <td className="px-4 py-4">
+              <TableCell className=" text-center">
                 {card.word.meanings?.[0]?.meaning ?? "-"}
-              </td>
+              </TableCell>
 
-              <td className="px-4 py-4 text-center">
+              <TableCell className="text-center">
                 HSK {card.word.hskLevel}
-              </td>
+              </TableCell>
 
             </tr>
 
@@ -138,39 +145,23 @@ export default function AssignmentCardTable({
 
         </tbody>
 
-      </table>
+      </TableContainer>
 
-      <div className="flex items-center justify-between border-t bg-gray-50 px-5 py-4">
+      <div className="border-t border-black/5 bg-zinc-50 px-5 py-4">
 
-        <button
-          disabled={page === 1}
-          onClick={() =>
-            handlePageChange(
-              page - 1
-            )
-          }
-          className="rounded-lg border px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Previous
-        </button>
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          setPage={(value) => {
 
-        <span className="text-sm text-gray-600">
-          Page {page} of {totalPages}
-        </span>
+            if (typeof value === "function") {
+              handlePageChange(value(page));
+            } else {
+              handlePageChange(value);
+            }
 
-        <button
-          disabled={
-            page === totalPages
-          }
-          onClick={() =>
-            handlePageChange(
-              page + 1
-            )
-          }
-          className="rounded-lg border px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Next
-        </button>
+          }}
+        />
 
       </div>
 

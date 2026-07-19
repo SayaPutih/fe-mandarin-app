@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "@/components/(student)/Class/Header";
-import ClassGrid from "@/components/(student)/Class/ClassGrid";
-import ClassGridSkeleton from "@/components/(student)/Class/ClassGridSekeleton";
+import Header from "@/components/(student)/class/Header";
+import ClassGrid from "@/components/(student)/class/ClassGrid";
+import ClassGridSkeleton from "@/components/(student)/class/ClassGridSekeleton";
 
 import { useGetClasses } from "@/hooks/useStudentClass";
 

@@ -10,17 +10,74 @@ import {
   getAssignments,
   getWords,
   createAssignment,
+  updateAssignment,
   getAssignmentDetail,
   getAssignmentCards,
   getAssignmentStudents,
   removeStudent,
-  removeAssignment
+  removeAssignment,
+  getUpdateAssignment
 } from "@/services/teacher/teacherAssignment.service";
 
 import type {
   Assignment,
   MandarinWord,
 } from "@/types/teacher";
+
+export function useUpdateAssignmentDetail(
+  assignmentId?: string
+) {
+
+  const [
+    assignment,
+    setAssignment,
+  ] = useState<any>(null);
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(true);
+
+  const fetchAssignment =
+    async () => {
+
+      if (!assignmentId) return;
+
+      try {
+
+        setLoading(true);
+
+        const result =
+          await getUpdateAssignment(
+            assignmentId
+          );
+          console.log("Assignmen class Detail")
+          console.log(result);
+        setAssignment(result);
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+  useEffect(() => {
+    fetchAssignment();
+  }, [assignmentId]);
+
+  return {
+
+    loading,
+
+    assignment,
+
+    refresh: fetchAssignment,
+
+  };
+
+}
 
 
 export function useAssignments(
@@ -145,6 +202,49 @@ export function useCreateAssignment() {
   return {
     loading,
     handleCreateAssignment,
+  };
+
+}
+
+export function useUpdateAssignment() {
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const handleUpdateAssignment =
+    async (
+      assignmentId: string,
+      data: {
+        title: string;
+        description?: string;
+        dueDate?: string;
+        wordIds: string[];
+      }
+    ) => {
+
+      try {
+
+        setLoading(true);
+
+        return await updateAssignment(
+          assignmentId,
+          data
+        );
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    };
+
+  return {
+
+    loading,
+
+    handleUpdateAssignment,
+
   };
 
 }

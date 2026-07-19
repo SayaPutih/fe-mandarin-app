@@ -1,6 +1,6 @@
-import type {
-  StudentMemoryWord,
-} from "@/types/teacher";
+//EE 2
+import { TableContainer,TableHeader,TableCell } from "@/components/ui/Table";
+import type {StudentMemoryWord} from "@/types/teacher";
 
 interface ReviewScheduleTableProps {
   reviewSchedule: StudentMemoryWord[];
@@ -10,25 +10,31 @@ export default function ReviewScheduleTable({
   reviewSchedule,
 }: ReviewScheduleTableProps) {
   return (
-    <div className="rounded-lg border bg-white p-4 shadow-sm">
-      <h2 className="mb-3 text-lg font-semibold">
-        Review Schedule
-      </h2>
+    <div className="rounded-lg border border-zinc-200 bg-white shadow-sm transition-all
+        duration-200
+        hover:-translate-y-1
+        hover:border-black/50
+        hover:shadow-lg">
+      <div className="bg-zinc-200 w-full rounded-t-md p-2">
+        <h2 className="text-lg font-semibold text-black text-center">
+          Recently Reviewd
+        </h2>
+      </div>
 
-      <table className="w-full table-fixed text-sm">
+      <TableContainer>
         <thead>
-          <tr className="border-b">
-            <th className="w-1/3 pb-2 text-left">
+          <tr className="border-b border-zinc-200">
+            <TableHeader className="w-1/3 pb-2 text-center">
               Hanzi
-            </th>
+            </TableHeader>
 
-            <th className="w-1/3 pb-2 text-left">
+            <TableHeader className="w-1/3 pb-2 text-center">
               Review
-            </th>
+            </TableHeader>
 
-            <th className="w-1/3 pb-2 text-left">
+            {/* <TableHeader className="w-1/3 pb-2 text-center">
               Recall
-            </th>
+            </TableHeader> */}
           </tr>
         </thead>
 
@@ -38,31 +44,31 @@ export default function ReviewScheduleTable({
             .map((item) => (
               <tr
                 key={item.id}
-                className="border-b"
+                className="border-b border-zinc-200"
               >
-                <td className="py-2 font-semibold">
+                <TableCell className="py-2 font-semibold text-center">
                   {item.word?.simplified}
-                </td>
+                </TableCell>
 
-                <td className="py-2 text-xs">
+                <TableCell className="py-2 text-xs text-center">
                   {item.nextReviewAt
                     ? new Date(
                         item.nextReviewAt
                       ).toLocaleDateString()
                     : "-"}
-                </td>
+                </TableCell>
 
-                <td className="py-2">
+                {/* <TableCell className="py-2 text-center">
                   {(
                     (item.predictedRecall ||
                       0) * 100
                   ).toFixed(1)}
                   %
-                </td>
+                </TableCell> */}
               </tr>
             ))}
         </tbody>
-      </table>
+      </TableContainer>
     </div>
   );
 }

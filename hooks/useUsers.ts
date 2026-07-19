@@ -55,47 +55,31 @@ export function useUsers() {
     string | null
   >(null);
 
-  const fetchUsers =
-    async () => {
+  const fetchUsers = async () => {
+    setLoading(true);
 
-      setLoading(true);
+    try {
+      const data = await getAllUsers(
+        page,
+        5,
+        search
+      );
 
-      try {
-        const data =
-          await getAllUsers(
-            page
-          );
-
-        setUsers(data.users);
-
-        setTotalPages(
-          data.totalPages
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+      setUsers(data.users);
+      setTotalPages(data.totalPages);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchUsers();
-  }, [page]);
+  }, [page, search]);
 
-  const filteredUsers =
-    useMemo(() => {
-      return users.filter(
-        (user) =>
-          user.name
-            .toLowerCase()
-            .includes(
-              search.toLowerCase()
-            ) ||
-          user.email
-            .toLowerCase()
-            .includes(
-              search.toLowerCase()
-            )
-      );
-    }, [users, search]);
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
+
 
   const confirmDelete =
     async () => {
@@ -117,8 +101,6 @@ export function useUsers() {
     loading,
 
     users,
-
-    filteredUsers,
 
     search,
 

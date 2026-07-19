@@ -37,8 +37,8 @@ export default function VocabularyTable({
 
         <tbody>
           {filteredWords.map((word) => (
-            <tr key={word.id}className="border-t transition hover:bg-gray-50">
-              <TableCell className="text-xl font-bold">{word.simplified}</TableCell>
+            <tr key={word.id} className="border-t border-zinc-200 transition hover:bg-gray-100">
+              <TableCell className="text-xl px-3 font-bold">{word.simplified}</TableCell>
 
               <TableCell>{word.pinyin}</TableCell>
 
@@ -60,10 +60,10 @@ export default function VocabularyTable({
                     href={`/teacher/vocabulary/${word.id}`}
                     label="view" 
                   />
-                  <TeacherButton
+                  {/* <TeacherButton
                     label="Edit" 
                     variant="yellow"
-                  />
+                  /> */}
                 </div>
               </TableCell>
             </tr>

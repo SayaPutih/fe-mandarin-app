@@ -1,8 +1,21 @@
 import { api } from "@/lib/axios";
 
+export const getTeacherVocabularyStats = async ()=>{
+  try{
+
+    const response = await api.get("/teacher/vocabulary/stats")
+    console.log(response);
+    return response;
+  }catch(err){
+    return null;
+  }
+}
+
 export const getTeacherDashboard = async () => {
   try {
     const response = await api.get("/teacher/dashboard");
+    console.log("Teacher Dashboard")
+    console.log(response)
     return response.data;
   } catch (error) {
     return null;
@@ -64,7 +77,8 @@ export const getVocabularyById = async (
     const response = await api.get(
       `/teacher/vocabulary/${id}`
     );
-
+    console.log("Vocabulary ID")
+    console.log(response.data);
     return response.data;
   } catch (error) {
     return null;

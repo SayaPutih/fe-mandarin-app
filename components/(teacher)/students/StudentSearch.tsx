@@ -1,3 +1,6 @@
+//EE
+import { FormField } from "@/components/ui/form/FormField";
+
 interface StudentSearchProps {
   search: string;
 
@@ -12,7 +15,7 @@ export default function StudentSearch({
 }: StudentSearchProps) {
   return (
     <div className="mb-4">
-      <input
+      {/* <input
         type="text"
         placeholder="Search students..."
         value={search}
@@ -33,6 +36,16 @@ export default function StudentSearch({
           focus:ring-1
           focus:ring-black
         "
+      /> */}
+
+      <FormField
+          placeholder="Search students..."
+          value={search}
+          onChange={(e) =>
+            setSearch(
+              e.target.value
+            )
+          }
       />
     </div>
   );
